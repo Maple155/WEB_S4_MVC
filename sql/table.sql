@@ -44,3 +44,13 @@ CREATE TABLE pret (
    FOREIGN KEY(id_type_pret) REFERENCES type_pret(id_type_pret),
    FOREIGN KEY(id_client) REFERENCES client(id_client)
 );
+
+CREATE TABLE mensualite (
+   id_mensualite INT AUTO_INCREMENT,
+   montant DECIMAL(15,0) NOT NULL,
+   date_echeance DATE NOT NULL,
+   date_paiement VARCHAR(50) NOT NULL,
+   id_pret INT NOT NULL,
+   PRIMARY KEY(id_mensualite),
+   FOREIGN KEY(id_pret) REFERENCES pret(id_pret)
+);
