@@ -31,7 +31,6 @@ include 'sidebar.php';
             max-width: 500px;
             padding: 20px;
         }
-        
         .form-container {
             background: #111111;
             padding: 40px;
