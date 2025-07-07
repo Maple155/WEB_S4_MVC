@@ -250,7 +250,7 @@ include 'sidebar.php';
     </div>
 
     <script>
-        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws/";
+        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
 
         // Définir la date d'aujourd'hui par défaut
         document.getElementById('date').valueAsDate = new Date();

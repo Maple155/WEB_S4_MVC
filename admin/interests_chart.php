@@ -88,7 +88,7 @@
   </div>
 
   <script>
-    const apiBase = "http://localhost/Git/WEB_S4_MVC/ws/";
+    const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
     let chartInstance = null;
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +116,7 @@
 
       const data = `date_debut=${startDate}&date_fin=${endDate}`;
 
-      ajax("GET", "admin/interets", data, (response) => {
+      ajax("GET", "/admin/interets", data, (response) => {
         if (response.error) {
           messageEl.textContent = response.error;
           messageEl.className = 'error';
