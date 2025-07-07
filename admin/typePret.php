@@ -116,7 +116,7 @@ include 'sidebar.php';
             <td>${e.age_min}</td>
             <td>
               <button onclick='remplirFormulaire(${JSON.stringify(e)})'>✏️</button>
-              <button onclick='supprimerEtudiant(${e.id})'>🗑️</button>
+              <button onclick='supprimerEtudiant(${e.id_type_pret})'>🗑️</button>
             </td>
           `;
           tbody.appendChild(tr);
@@ -149,7 +149,7 @@ include 'sidebar.php';
     }
 
     function remplirFormulaire(e) {
-      document.getElementById("id").value = e.id;
+      document.getElementById("id").value = e.id_type_pret;
       document.getElementById("nom").value = e.nom;
       document.getElementById("taux_interet").value = e.taux_interet;
       document.getElementById("duree_max_mois").value = e.duree_max_mois;
