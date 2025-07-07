@@ -157,7 +157,7 @@
                 <span class="menu-label">Gestion des prêts</span>
             </div>
             <div class="submenu">
-                <a href="loan_types.php" class="menu-item">
+                <a href="../typePret.html" class="menu-item">
                     <i class="fas fa-tags"></i>
                     <span class="menu-label">Types de prêt</span>
                 </a>

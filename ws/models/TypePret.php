@@ -25,7 +25,7 @@ class TypePret {
     public static function update($id, $data) {
         $db = getDB();
         $stmt = $db->prepare("UPDATE type_pret SET nom = ?, taux_interet = ?, duree_max_mois = ?, montant_min = ?,montant_max = ?, age_min = ? WHERE id_type_pret = ?");
-        $stmt->execute([$data->nom, $data->taux_interet, $data->duree_max_mois, $data->montant_min,$data->montant_max,$data->age_min, $id]);
+        $stmt->execute([$data['nom'], $data['taux_interet'], $data['duree_max_mois'], $data['montant_min'],$data['montant_max'],$data['age_min'], $id]);
     }
 
     public static function delete($id) {
