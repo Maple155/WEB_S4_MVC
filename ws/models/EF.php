@@ -18,7 +18,33 @@ class EF {
     public static function addFond($data){
         $db = getDB();
         $stmt = $db->prepare("INSERT INTO mouvement_argent (montant, date_) VALUES (?, ?)");
-        $stmt->execute([$data->montant, $data->date]);
+        $date = Utils::formatDate($data->date);
+        $stmt->execute([$data->montant, $date]);
         return $db->lastInsertId();
+    }
+    public static function getMonthlyInterests($date_debut, $date_fin) {
+        $db = getDB();
+        $query = "
+            SELECT 
+                YEAR(p.date_debut) AS annee,
+                MONTH(p.date_debut) AS mois,
+                DATE_FORMAT(p.date_debut, '%Y-%m') AS periode,
+                COUNT(p.id_pret) AS nombre_prets,
+                SUM(p.montant) AS capital_total,
+                ROUND(SUM(p.montant * (tp.taux_interet/100) / 12), 2) AS interets_mensuels
+            FROM pret p
+            JOIN type_pret tp ON p.id_type_pret = tp.id_type_pret
+            WHERE p.date_debut BETWEEN :date_debut AND :date_fin
+            GROUP BY YEAR(p.date_debut), MONTH(p.date_debut)
+            ORDER BY annee, mois
+        ";
+        
+        $stmt = $db->prepare($query);
+        $stmt->execute([
+            ':date_debut' => $date_debut,
+            ':date_fin' => $date_fin
+        ]);
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

@@ -85,11 +85,11 @@ include 'sidebar.php';
 <body>
     <div class="login-container">
         <img src="https://via.placeholder.com/80" alt="Logo Banque" class="logo">
-        <h1>Espace Administrateur</h1>
-            <input type="text" id="nom" placeholder="Nom de l'établissement" required>
-            <input type="password" id="mdp" placeholder="Mot de passe" required>
-            <button id="submitBtn" onclick="connect()">
-                <span id="btnText">Se connecter</span>
+        <h1>Ajouter Fond</h1>
+            <input type="number" id="montant" placeholder="montant à ajouter" required>
+            <input type="date" id="date"  required>
+            <button id="submitBtn" onclick="addFond()">
+                <span id="btnText">Ajouter</span>
                 <div class="loader" id="loader"></div>
             </button>        
         <div id="message" class="error"></div>
@@ -109,16 +109,16 @@ include 'sidebar.php';
       };
       xhr.send(data);
     }
-    function connect(){
-        const nom = document.getElementById("nom").value;
-        const mdp = document.getElementById("mdp").value;
-        const data = `nom=${nom}&mdp=${mdp}`;
-        ajax("POST", `admin/login`, data, (response)=>{
+    function addFond(){
+        const montant = document.getElementById("montant").value;
+        const date = document.getElementById("date").value;
+        const data = `montant=${montant}&date=${date}`;
+        ajax("POST", `admin/addFond`, data, (response)=>{
             if(response){
                 window.location.href = "add-fond.php";
             }else
             {
-                alert("Identifiants Incorrects");
+                alert("Données invalides");
             }
         });
     }
