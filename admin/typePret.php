@@ -1,39 +1,89 @@
+<?php
+// En haut de chaque page admin
+include 'sidebar.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
-  <title>Gestion des étudiants</title>
+  <title>Types de prêts</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    input, button { margin: 5px; padding: 5px; }
-    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; }
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      /* largeur de la sidebar */
+      padding: 20px;
+      transition: margin-left 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+      }
+    }
+
+    input,
+    button {
+      margin: 5px;
+      padding: 5px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
   </style>
 </head>
+
 <body>
+  <div class="main-content">
 
-  <h1>Gestion des étudiants</h1>
+    <h1>Type de prêts</h1>
 
-  <div>
-    <input type="hidden" id="id">
-    <input type="text" id="nom" placeholder="Nom">
-    <input type="number" id="taux_interet" placeholder="Taux d'interet">
-    <input type="number" id="duree_max_mois" placeholder="Duree max de pret (mois)">
-    <input type="number" id="montant_min" placeholder="Montant minimum">
-    <input type="number" id="montant_max" placeholder="Montant maximum">
-    <input type="number" id="age_min" placeholder="Age minimum">
-    <button onclick="ajouterOuModifier()">Ajouter / Modifier</button>
+    <div>
+      <input type="hidden" id="id">
+      <input type="text" id="nom" placeholder="Nom">
+      <input type="number" id="taux_interet" placeholder="Taux d'interet">
+      <input type="number" id="duree_max_mois" placeholder="Duree max de pret (mois)">
+      <input type="number" id="montant_min" placeholder="Montant minimum">
+      <input type="number" id="montant_max" placeholder="Montant maximum">
+      <input type="number" id="age_min" placeholder="Age minimum">
+      <button onclick="ajouterOuModifier()">Ajouter / Modifier</button>
+    </div>
+
+    <table id="table-etudiants">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Taux d'interet</th>
+          <th>duree_max_mois</th>
+          <th>Montant minimum</th>
+          <th>Montant maximum</th>
+          <th>Age minimum</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </div>
-
-  <table id="table-etudiants">
-    <thead>
-      <tr>
-        <th>ID</th><th>Nom</th><th>Taux d'interet</th><th>duree_max_mois</th><th>Montant minimum</th><th>Montant maximum</th><th>Age minimum</th><th>Actions</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
 
   <script>
     const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
@@ -130,4 +180,5 @@
   </script>
 
 </body>
+
 </html>

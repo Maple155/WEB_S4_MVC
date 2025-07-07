@@ -90,7 +90,7 @@ include 'sidebar.php';
             messageEl.textContent = 'Chargement...';
             messageEl.className = '';
             
-            const data = `start=${startDate}&end=${endDate}`;
+            const data = `date_debut=${startDate}&date_fin=${endDate}`;
             
             ajax("GET", "admin/interets", data, function(response) {
                 if (response.error) {
@@ -103,8 +103,8 @@ include 'sidebar.php';
                 const tbody = document.getElementById('interestsBody');
                 tbody.innerHTML = '';
                 
-                if (response.data && response.data.length > 0) {
-                    response.data.forEach(item => {
+                if (response.details && response.details.length > 0) {
+                    response.details.forEach(item => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <td>${item.periode}</td>
@@ -125,24 +125,15 @@ include 'sidebar.php';
         }
         
         function ajax(method, url, data, callback) {
-            const xhr = new XMLHttpRequest();
-            xhr.open(method, apiBase + url, true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        try {
-                            callback(JSON.parse(xhr.responseText));
-                        } catch (e) {
-                            console.error("Erreur parsing JSON:", e);
-                            document.getElementById('message').textContent = "Erreur serveur";
-                        }
-                    } else {
-                        document.getElementById('message').textContent = "Erreur " + xhr.status;
-                    }
-                }
-            };
-            xhr.send(data);
+        const xhr = new XMLHttpRequest();
+        xhr.open(method, apiBase + url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+            callback(JSON.parse(xhr.responseText));
+            }
+        };
+        xhr.send(data);
         }
     </script>
 </body>

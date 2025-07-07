@@ -1,7 +1,3 @@
-<?php 
-// En haut de chaque page admin
-include 'sidebar.php'; 
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
