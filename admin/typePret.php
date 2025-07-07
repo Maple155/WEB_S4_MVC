@@ -1,12 +1,12 @@
 <?php 
 // En haut de chaque page admin
-include 'admin/sidebar.php'; 
+include 'sidebar.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Gestion des étudiants</title>
+  <title>Types de prêts</title>
   <style>
     body { font-family: sans-serif; padding: 20px; }
     input, button { margin: 5px; padding: 5px; }
@@ -17,7 +17,7 @@ include 'admin/sidebar.php';
 </head>
 <body>
 
-  <h1>Gestion des étudiants</h1>
+  <h1>Type de prêts</h1>
 
   <div>
     <input type="hidden" id="id">

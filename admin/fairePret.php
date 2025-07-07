@@ -1,6 +1,6 @@
 <?php 
 // En haut de chaque page admin
-include 'admin/sidebar.php'; 
+include 'sidebar.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
