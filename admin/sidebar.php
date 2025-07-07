@@ -145,10 +145,6 @@
                     <i class="fas fa-plus-circle"></i>
                     <span class="menu-label">Ajouter des fonds</span>
                 </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-list"></i>
-                    <span class="menu-label">Voir les mouvements</span>
-                </a>
             </div>
             
             <!-- Gestion des prêts -->
@@ -157,11 +153,11 @@
                 <span class="menu-label">Gestion des prêts</span>
             </div>
             <div class="submenu">
-                <a href="loan_types.php" class="menu-item">
+                <a href="typePret.php" class="menu-item">
                     <i class="fas fa-tags"></i>
                     <span class="menu-label">Types de prêt</span>
                 </a>
-                <a href="../fairePret.php" class="menu-item">
+                <a href="fairePret.php" class="menu-item">
                     <i class="fas fa-clipboard-list"></i>
                     <span class="menu-label">Faire un prêt</span>
                 </a>
@@ -173,24 +169,13 @@
                 <span class="menu-label">Rapports</span>
             </div>
             <div class="submenu">
-                <a href="monthly_interests.php" class="menu-item">
+                <a href="interests_report.php" class="menu-item">
                     <i class="fas fa-coins"></i>
                     <span class="menu-label">Intérêts mensuels</span>
                 </a>
-                <a href="annual_report.php" class="menu-item">
-                    <i class="fas fa-file-alt"></i>
-                    <span class="menu-label">Rapport annuel</span>
-                </a>
             </div>
-            
-            <!-- Administration -->
-            <a href="settings.php" class="menu-item">
-                <i class="fas fa-cog"></i>
-                <span class="menu-label">Paramètres</span>
-            </a>
-            
             <!-- Déconnexion -->
-            <a href="logout.php" class="menu-item" style="color: #e74c3c;">
+            <a href="../index.html" class="menu-item" style="color: #e74c3c;">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="menu-label">Déconnexion</span>
             </a>

@@ -26,11 +26,18 @@ class AdminController {
         Flight::json(['message' => 'Fond ajouté', 'id' => $id]);
     }
 
-    public function getInterestsByPeriod() {
+    public static function getInterestsByPeriod() {
         // Récupération des paramètres
         $params = Flight::request()->query;
-        $date_debut = $params['debut'] ?? date('Y-m-01', strtotime('-1 year'));
-        $date_fin = $params['fin'] ?? date('Y-m-t');
+
+        // Sécurisation des dates incomplètes (au format 'YYYY-MM')
+        $date_debut = isset($params['date_debut']) 
+            ? $params['date_debut'] . '-01' 
+            : date('Y-m-01', strtotime('-1 year'));
+
+        $date_fin = isset($params['date_fin']) 
+            ? date('Y-m-t', strtotime($params['date_fin'] . '-31')) 
+            : date('Y-m-t');
 
         // Validation des dates
         if (!strtotime($date_debut) || !strtotime($date_fin)) {
@@ -41,7 +48,7 @@ class AdminController {
         try {
             // Appel au modèle
             $details = EF::getMonthlyInterests($date_debut, $date_fin);
-            
+
             // Calcul du total
             $total_interets = array_sum(array_column($details, 'interets_mensuels'));
 
@@ -53,7 +60,11 @@ class AdminController {
                 'details' => $details
             ]);
         } catch (PDOException $e) {
-            Flight::halt(500, json_encode(['error' => 'Erreur de base de données']));
+           Flight::halt(500, json_encode([
+                'error' => 'Erreur de base de données',
+                'details' => $e->getMessage()
+            ]));
         }
     }
+
 }

@@ -84,7 +84,7 @@ include 'sidebar.php';
 </head>
 <body>
     <div class="login-container">
-        <img src="../sql/banque.png" alt="Logo Banque" class="logo">
+        <img src="https://via.placeholder.com/80" alt="Logo Banque" class="logo">
         <h1>Ajouter Fond</h1>
             <input type="number" id="montant" placeholder="montant à ajouter" required>
             <input type="date" id="date"  required>
@@ -96,7 +96,7 @@ include 'sidebar.php';
     </div>
 
     <script>
-        const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws/";
+        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws/";
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();
