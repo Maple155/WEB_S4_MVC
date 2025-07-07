@@ -16,17 +16,3 @@ INSERT INTO type_pret (id_type_pret, nom, taux_interet, duree_max_mois, montant_
 INSERT INTO client (id_client, nom, mdp, prenom, date_de_naissance, revenu_mensuel) VALUES
 (1, 'rakoto', 'pass123', 'Jean', '1999-04-15', 800000),
 (2, 'randria', 'pass456', 'Hery', '2001-09-20', 600000);
-
--- 7) Statuts des prêts
-INSERT INTO type_statut_pret (id_statut, nom) VALUES
-(1, 'En attente'),
-(2, 'Accordé'),
-(3, 'Refusé'),
-(4, 'Remboursé');
-
--- 9) Statuts des mensualités
-INSERT INTO statut_mensualite (id_statut_mensualite, nom) VALUES
-(1, 'Payée'),
-(2, 'Partiellement payée'),
-(3, 'En retard'),
-(4, 'À venir');
