@@ -20,6 +20,7 @@ include 'sidebar.php';
         }
         .login-container {
             background: white;
+            margin-left: 250px;   
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -96,7 +97,7 @@ include 'sidebar.php';
     </div>
 
     <script>
-        const apiBase = "http://localhost/WEB_S4_MVC/ws/";
+        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws/";
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();

@@ -9,6 +9,18 @@ include 'sidebar.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intérêts Mensuels - Admin</title>
     <style>
+        .main-content {
+      margin-left: 250px;
+      /* largeur de la sidebar */
+      padding: 20px;
+      transition: margin-left 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+      }
+    }
         /* Styles précédents... */
         .filter-container {
             margin-bottom: 20px;
@@ -34,7 +46,7 @@ include 'sidebar.php';
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <div class="main-content">
         <img src="https://via.placeholder.com/80" alt="Logo Banque" class="logo">
         <h1>Intérêts Mensuels</h1>
         
@@ -64,7 +76,7 @@ include 'sidebar.php';
     </div>
 
     <script>
-        const apiBase = "http://localhost/WEB_S4_MVC/ws/";
+        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws/";
         
         // Chargement initial
         document.addEventListener('DOMContentLoaded', function() {
