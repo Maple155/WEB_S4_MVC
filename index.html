@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -34,7 +34,11 @@
   </table>
 
   <script>
+<<<<<<< Updated upstream
     const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+=======
+    const apiBase = "http://localhost/WEB-S4/ws";
+>>>>>>> Stashed changes
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();
@@ -119,5 +123,88 @@
     chargerEtudiants();
   </script>
 
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Système Bancaire</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-options {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        .logo {
+            width: 80px;
+            margin-bottom: 1rem;
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+        .btn-admin {
+            background-color: #3498db;
+            color: white;
+        }
+        .btn-admin:hover {
+            background-color: #2980b9;
+        }
+        .btn-client {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .btn-client:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-options">
+        <img src="https://via.placeholder.com/80" alt="Logo Banque" class="logo">
+        <h1>Connexion au système</h1>
+        
+        <div class="btn-container">
+            <button class="btn btn-admin" onclick="window.location.href='admin/login.php'">
+                Login Admin
+            </button>
+            
+            <a href="#" class="btn btn-client">
+                Login Client
+            </a>
+        </div>
+    </div>
 </body>
 </html>
