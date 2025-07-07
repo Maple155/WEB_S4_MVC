@@ -1,22 +1,19 @@
-<?php
-include 'sidebar.php';
-?>
+<?php include 'sidebar.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <title>Types de prêts</title>
   <style>
     body {
-      font-family: sans-serif;
-      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0a0a0a;
+      color: #ffffff;
     }
 
     .main-content {
-      margin-left: 250px;
-      /* largeur de la sidebar */
-      padding: 20px;
+      margin-left: 260px;
+      padding: 30px;
       transition: margin-left 0.3s;
     }
 
@@ -26,35 +23,63 @@ include 'sidebar.php';
       }
     }
 
-    input,
+    input {
+      background-color: #111;
+      color: #fff;
+      border: 1px solid #2d7a5f;
+      padding: 10px;
+      margin: 8px 10px 8px 0;
+      border-radius: 4px;
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
     button {
-      margin: 5px;
-      padding: 5px;
+      background-color: #2d7a5f;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 4px;
+      margin: 8px 8px 8px 0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #3d8a6f;
     }
 
     table {
       border-collapse: collapse;
       width: 100%;
       margin-top: 20px;
+      background-color: #111;
+      color: #fff;
     }
 
-    th,
-    td {
-      border: 1px solid #ccc;
-      padding: 8px;
+    th, td {
+      border: 1px solid #2d7a5f;
+      padding: 12px;
       text-align: left;
     }
 
     th {
-      background-color: #f2f2f2;
+      background-color: #1a1a1a;
     }
+
+    td button {
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+
   </style>
 </head>
-
 <body>
   <div class="main-content">
-
     <h1>Liste de tous les prêts</h1>
+
     <input type="text" id="filtre-montant" placeholder="Filtrer par montant min">
     <input type="text" id="filtre-client" placeholder="Filtrer par client">
     <input type="text" id="filtre-type" placeholder="Filtrer par type de prêt">
@@ -66,10 +91,10 @@ include 'sidebar.php';
         <tr>
           <th>Montant</th>
           <th>Date de début</th>
-          <th>Duree mois</th>
+          <th>Durée (mois)</th>
           <th>Assurance</th>
-          <th>Delais premier remboursement</th>
-          <th>Type pret</th>
+          <th>Délai 1er remboursement</th>
+          <th>Type prêt</th>
           <th>Client</th>
           <th>Action</th>
         </tr>
@@ -79,7 +104,7 @@ include 'sidebar.php';
   </div>
 
   <script>
-    const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+    const apiBase = "http://localhost/WEB_S4_MVC/ws";
     let allPrets = [];
 
     function ajax(method, url, data, callback) {
@@ -114,9 +139,7 @@ include 'sidebar.php';
           <td>${e.delai_mois}</td>
           <td>${e.nom_type_pret}</td>
           <td>${e.prenom}</td>
-          <td>
-            <button onclick='creerPdf(${e.id_pret})'>📄 PDF</button>
-          </td>
+          <td><button onclick='creerPdf(${e.id_pret})'>📄 PDF</button></td>
         `;
         tbody.appendChild(tr);
       });
@@ -130,12 +153,9 @@ include 'sidebar.php';
 
       const resultat = allPrets.filter(e => {
         const okMontant = montantMin === null || parseFloat(e.montant) >= montantMin;
-
         const nomComplet = ((e.prenom || "") + " " + (e.nom || "")).toLowerCase();
         const okClient = !client || nomComplet.includes(client) || (e.prenom && e.prenom.toLowerCase().includes(client));
-
         const okType = !type || (e.nom_type_pret && e.nom_type_pret.toLowerCase().includes(type));
-
         return okMontant && okClient && okType;
       });
 
@@ -149,13 +169,11 @@ include 'sidebar.php';
       renderPrets(allPrets);
     }
 
-    function creerPdf($id) {
-        ajax("POST", `/prets/${id}`);
+    function creerPdf(id) {
+      ajax("POST", `/prets/${id}`);
     }
 
     chargerPrets();
   </script>
-
 </body>
-
 </html>
