@@ -48,7 +48,7 @@ CREATE TABLE pret (
 );
 
 CREATE TABLE mensualite (
-   id_mensualite INT AUTO_INCREMENT
+   id_mensualite INT AUTO_INCREMENT,
    capital DECIMAL(15,0) NOT NULL,
    interet DECIMAL(15,0) NOT NULL,
    assurance DECIMAL(15,0) DEFAULT 0,
