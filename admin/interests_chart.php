@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Intérêts Mensuels - Admin</title>
+  <title>Graphique Intérêts Mensuels</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -48,24 +48,12 @@
       background-color: #3d8a6f;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    th, td {
-      border: 1px solid #1a4a3a;
-      padding: 10px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #1a4a3a;
-    }
-
-    td {
+    canvas {
       background-color: #111;
+      border: 1px solid #2d7a5f;
+      border-radius: 8px;
+      padding: 10px;
+      max-width: 100%;
     }
 
     #message {
@@ -84,38 +72,24 @@
       color: #ffdada;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
   <div class="main-content">
 
     <div class="filter-container">
       <input type="month" id="startDate">
       <input type="month" id="endDate">
-      <button onclick="loadInterests()">Filtrer</button>
+      <button onclick="loadChart()">Filtrer</button>
     </div>
 
-    <div id="results">
-      <table id="interestsTable">
-        <thead>
-          <tr>
-            <th>Mois/Année</th>
-            <th>Nombre de prêts</th>
-            <th>Capital</th>
-            <th>Intérêts</th>
-          </tr>
-        </thead>
-        <tbody id="interestsBody">
-          <!-- Résultats dynamiques -->
-        </tbody>
-      </table>
-    </div>
-
+    <canvas id="interestChart" height="100"></canvas>
     <div id="message"></div>
   </div>
 
   <script>
     const apiBase = "http://localhost/WEB_S4_MVC/ws/";
+    let chartInstance = null;
 
     document.addEventListener('DOMContentLoaded', () => {
       const end = new Date();
@@ -125,14 +99,14 @@
       document.getElementById('startDate').value = formatDate(start);
       document.getElementById('endDate').value = formatDate(end);
 
-      loadInterests();
+      loadChart();
     });
 
     function formatDate(date) {
       return date.toISOString().slice(0, 7);
     }
 
-    function loadInterests() {
+    function loadChart() {
       const startDate = document.getElementById('startDate').value;
       const endDate = document.getElementById('endDate').value;
       const messageEl = document.getElementById('message');
@@ -142,10 +116,7 @@
 
       const data = `date_debut=${startDate}&date_fin=${endDate}`;
 
-      ajax("GET", "admin/interets", data, function(response) {
-        const tbody = document.getElementById('interestsBody');
-        tbody.innerHTML = '';
-
+      ajax("GET", "admin/interets", data, (response) => {
         if (response.error) {
           messageEl.textContent = response.error;
           messageEl.className = 'error';
@@ -153,49 +124,89 @@
         }
 
         if (response.details && response.details.length > 0) {
-          response.details.forEach(item => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-              <td>${item.periode}</td>
-              <td>${item.nombre_prets}</td>
-              <td>${parseFloat(item.capital_total).toLocaleString('fr-FR')} €</td>
-              <td>${parseFloat(item.interets_mensuels).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €</td>
-            `;
-            tbody.appendChild(row);
-          });
+          const labels = response.details.map(item => item.periode);
+          const dataValues = response.details.map(item => parseFloat(item.interets_mensuels));
+
+          renderChart(labels, dataValues);
 
           messageEl.textContent = `Total des intérêts : ${parseFloat(response.total_interets).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`;
           messageEl.className = 'success';
         } else {
+          if (chartInstance) chartInstance.destroy();
           messageEl.textContent = 'Aucun résultat trouvé';
           messageEl.className = 'error';
         }
       });
     }
 
-    function ajax(method, url, data, callback) {
-        const xhr = new XMLHttpRequest();
-        if (method === "GET" && data) {
-            xhr.open(method, apiBase + url + "?" + data, true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = () => {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                callback(JSON.parse(xhr.responseText));
+    function renderChart(labels, dataValues) {
+      const ctx = document.getElementById('interestChart').getContext('2d');
+
+      if (chartInstance) chartInstance.destroy();
+
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Intérêts (€)',
+            data: dataValues,
+            backgroundColor: '#2d7a5f',
+            borderColor: '#3d8a6f',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: context => `${context.parsed.y.toLocaleString('fr-FR', {minimumFractionDigits: 2})} €`
+              }
             }
-            };
-            xhr.send(null);  // Pas de body pour GET
-        } else {
-            // Pour POST/PUT/DELETE avec body
-            xhr.open(method, apiBase + url, true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = () => {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                callback(JSON.parse(xhr.responseText));
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                color: '#ffffff',
+                callback: value => value.toLocaleString('fr-FR') + ' €'
+              },
+              grid: { color: '#333' }
+            },
+            x: {
+              ticks: { color: '#ffffff' },
+              grid: { color: '#333' }
             }
-            };
-            xhr.send(data);
+          }
         }
+      });
     }
+
+function ajax(method, url, data, callback) {
+  const xhr = new XMLHttpRequest();
+  if (method === "GET" && data) {
+    xhr.open(method, apiBase + url + "?" + data, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        callback(JSON.parse(xhr.responseText));
+      }
+    };
+    xhr.send(null);  // Pas de body pour GET
+  } else {
+    // Pour POST/PUT/DELETE avec body
+    xhr.open(method, apiBase + url, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        callback(JSON.parse(xhr.responseText));
+      }
+    };
+    xhr.send(data);
+  }
+}
 
   </script>
 </body>

@@ -1,7 +1,4 @@
-<?php
-// En haut de chaque page admin
-include 'sidebar.php';
-?>
+<?php include 'sidebar.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -10,14 +7,14 @@ include 'sidebar.php';
     <title>Types de prêts</title>
     <style>
         body {
-            font-family: sans-serif;
-            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
         }
 
         .main-content {
-            margin-left: 250px;
-            /* largeur de la sidebar */
-            padding: 20px;
+            margin-left: 260px;
+            padding: 30px;
             transition: margin-left 0.3s;
         }
 
@@ -27,46 +24,79 @@ include 'sidebar.php';
             }
         }
 
-        input,
+        input {
+            background-color: #111;
+            color: #fff;
+            border: 1px solid #2d7a5f;
+            padding: 10px;
+            margin: 8px 10px 8px 0;
+            border-radius: 4px;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
         button {
-            margin: 5px;
-            padding: 5px;
+            background-color: #2d7a5f;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            margin: 8px 8px 8px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #3d8a6f;
         }
 
         table {
             border-collapse: collapse;
             width: 100%;
             margin-top: 20px;
+            background-color: #111;
+            color: #fff;
         }
 
         th,
         td {
-            border: 1px solid #ccc;
-            padding: 8px;
+            border: 1px solid #2d7a5f;
+            padding: 12px;
             text-align: left;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #1a1a1a;
+        }
+
+        td button {
+            padding: 6px 10px;
+            font-size: 14px;
         }
     </style>
 </head>
 
 <body>
     <div class="main-content">
+        <h1>Liste de tous les prêts</h1>
 
-        <h1>Type de prêts</h1>
+        <input type="text" id="filtre-montant" placeholder="Filtrer par montant min">
+        <input type="text" id="filtre-client" placeholder="Filtrer par client">
+        <input type="text" id="filtre-type" placeholder="Filtrer par type de prêt">
+        <button onclick="filtrerPrets()">Filtrer</button>
+        <button onclick="resetFiltre()">Réinitialiser</button>
 
         <table id="table-etudiants">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Montant</th>
                     <th>Date de début</th>
-                    <th>Duree mois</th>
+                    <th>Durée (mois)</th>
                     <th>Assurance</th>
-                    <th>Delais premier remboursement</th>
-                    <th>Type pret</th>
+                    <th>Délai 1er remboursement</th>
+                    <th>Type prêt</th>
                     <th>Client</th>
                     <th>Action</th>
                 </tr>
@@ -77,6 +107,7 @@ include 'sidebar.php';
 
     <script>
         const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
+        let allPrets = [];
 
         function ajax(method, url, data, callback) {
             const xhr = new XMLHttpRequest();
@@ -92,26 +123,52 @@ include 'sidebar.php';
 
         function chargerPrets() {
             ajax("GET", "/prets", null, (data) => {
-                const tbody = document.querySelector("#table-etudiants tbody");
-                tbody.innerHTML = "";
-                data.forEach(e => {
-                    const tr = document.createElement("tr");
-                    tr.innerHTML = `
-            <td>${e.id_pret}</td>
-            <td>${e.montant}</td>
-            <td>${e.date_debut}</td>
-            <td>${e.duree_mois}</td>
-            <td>${e.assurance}</td>
-            <td>${e.delai_mois}</td>
-            <td>${e.nom_type_pret}</td>
-            <td>${e.prenom}</td>
-            <td>
-              <button onclick='telechargerPdf(${e.id_pret})'>✏️</button>
-            </td>
-          `;
-                    tbody.appendChild(tr);
-                });
+                allPrets = data;
+                renderPrets(data);
             });
+        }
+
+        function renderPrets(prets) {
+            const tbody = document.querySelector("#table-etudiants tbody");
+            tbody.innerHTML = "";
+            prets.forEach(e => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+          <td>${e.montant}</td>
+          <td>${e.date_debut}</td>
+          <td>${e.duree_mois}</td>
+          <td>${e.assurance}</td>
+          <td>${e.delai_mois}</td>
+          <td>${e.nom_type_pret}</td>
+          <td>${e.prenom}</td>
+          <td><button onclick='telechargerPdf(${e.id_pret})'>📄 PDF</button></td>
+        `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filtrerPrets() {
+            const montantMinStr = document.getElementById("filtre-montant").value.trim();
+            const montantMin = montantMinStr === "" ? null : parseFloat(montantMinStr);
+            const client = document.getElementById("filtre-client").value.trim().toLowerCase();
+            const type = document.getElementById("filtre-type").value.trim().toLowerCase();
+
+            const resultat = allPrets.filter(e => {
+                const okMontant = montantMin === null || parseFloat(e.montant) >= montantMin;
+                const nomComplet = ((e.prenom || "") + " " + (e.nom || "")).toLowerCase();
+                const okClient = !client || nomComplet.includes(client) || (e.prenom && e.prenom.toLowerCase().includes(client));
+                const okType = !type || (e.nom_type_pret && e.nom_type_pret.toLowerCase().includes(type));
+                return okMontant && okClient && okType;
+            });
+
+            renderPrets(resultat);
+        }
+
+        function resetFiltre() {
+            document.getElementById("filtre-montant").value = "";
+            document.getElementById("filtre-client").value = "";
+            document.getElementById("filtre-type").value = "";
+            renderPrets(allPrets);
         }
 
         function telechargerPdf(id) {
@@ -120,12 +177,8 @@ include 'sidebar.php';
             window.open(url, '_blank');
         }
 
-
-
-
         chargerPrets();
     </script>
-
 </body>
 
 </html>
