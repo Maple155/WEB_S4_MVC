@@ -24,33 +24,31 @@ class EF {
     }
     public static function getMonthlyInterests($date_debut, $date_fin) {
         $db = getDB();
+        
         $query = "SELECT 
-                    YEAR(p.date_debut) AS annee,
-                    MONTH(p.date_debut) AS mois,
-                    DATE_FORMAT(p.date_debut, '%Y-%m') AS periode,
-                    COUNT(p.id_pret) AS nombre_prets,
-                    SUM(p.montant) AS capital_total,
-                    ROUND(SUM(p.montant * (tp.taux_interet/100) / 12), 2) AS interets_mensuels
-                FROM pret p
-                JOIN type_pret tp ON p.id_type_pret = tp.id_type_pret
-                WHERE p.date_debut BETWEEN :date_debut AND :date_fin
-                GROUP BY YEAR(p.date_debut), MONTH(p.date_debut)
-                ORDER BY annee, mois";
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN :date_debut AND :date_fin
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois";
 
-        // Construire la requête complète avec les paramètres injectés (pour logging)
+        // Logging SQL avec valeurs injectées
         $queryForLog = str_replace(
             [':date_debut', ':date_fin'],
             ["'" . addslashes($date_debut) . "'", "'" . addslashes($date_fin) . "'"],
             $query
         );
 
-        // Construire la ligne de log avec date + requête
         $logLine = "[" . date('Y-m-d H:i:s') . "] " . $queryForLog . PHP_EOL;
-
-        // Écrire dans un fichier local (créera le fichier s'il n'existe pas, et ajoute à la fin)
         file_put_contents(__DIR__ . '/../sql.log', $logLine, FILE_APPEND);
 
-        // Préparation et exécution
+        // Exécution de la requête
         $stmt = $db->prepare($query);
         $stmt->execute([
             ':date_debut' => $date_debut,
@@ -59,6 +57,7 @@ class EF {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
 
 

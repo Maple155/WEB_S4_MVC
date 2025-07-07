@@ -5,31 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Établissement Financier</title>
     <style>
-        /* Style de base pour la sidebar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        
         .sidebar {
-            width: 250px;
+            width: 260px;
             height: 100vh;
-            background-color: #2c3e50;
-            color: white;
+            background-color: #111111;
+            color: #ffffff;
             position: fixed;
             left: 0;
             top: 0;
-            padding-top: 20px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            transition: all 0.3s;
+            border-right: 1px solid #1a4a3a;
+            transition: all 0.3s ease;
             z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .sidebar::-webkit-scrollbar-track {
+            background: #111111;
+        }
+        
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #1a4a3a;
+            border-radius: 2px;
         }
         
         .sidebar-header {
+            padding: 30px 20px;
             text-align: center;
-            padding: 0 20px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid #1a4a3a;
         }
         
         .sidebar-header img {
-            width: 80px;
+            width: 80px;      
+            height: 80px;     
             border-radius: 50%;
-            margin-bottom: 10px;
+            border: 2px solid #2d7a5f;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        
+        .sidebar-header h3 {
+            font-size: 18px;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 1px;
         }
         
         .sidebar-menu {
@@ -37,27 +72,35 @@
         }
         
         .menu-item {
-            padding: 12px 20px;
+            padding: 16px 24px;
             display: flex;
             align-items: center;
-            color: #ecf0f1;
+            color: #b8b8b8;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            font-weight: 300;
+            border-left: 3px solid transparent;
         }
         
         .menu-item:hover {
-            background-color: #34495e;
-            padding-left: 25px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border-left-color: #2d7a5f;
         }
         
         .menu-item.active {
-            background-color: #3498db;
+            background-color: #1a4a3a;
+            color: #ffffff;
+            border-left-color: #2d7a5f;
         }
         
         .menu-item i {
-            margin-right: 10px;
-            width: 20px;
+            margin-right: 15px;
+            width: 18px;
             text-align: center;
+            font-size: 16px;
+            opacity: 0.8;
         }
         
         .menu-label {
@@ -65,44 +108,87 @@
         }
         
         .submenu {
-            padding-left: 20px;
+            background-color: #0a0a0a;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            transition: max-height 0.3s ease;
+        }
+        
+        .submenu .menu-item {
+            padding: 12px 24px 12px 50px;
+            font-size: 13px;
+            color: #999999;
+            border-left: none;
+        }
+        
+        .submenu .menu-item:hover {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        .submenu .menu-item i {
+            font-size: 14px;
+            margin-right: 12px;
+        }
+        
+        .menu-item.has-submenu {
+            position: relative;
         }
         
         .menu-item.has-submenu::after {
-            content: '▾';
-            transition: transform 0.3s;
+            content: '▸';
+            position: absolute;
+            right: 20px;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+            color: #666666;
         }
         
         .menu-item.has-submenu.open::after {
-            transform: rotate(180deg);
+            transform: rotate(90deg);
+            color: #2d7a5f;
         }
         
         .menu-item.has-submenu.open + .submenu {
-            max-height: 500px;
+            max-height: 300px;
         }
         
-        /* Bouton de toggle pour la sidebar */
+        .menu-item.logout {
+            color: #666666;
+            margin-top: 30px;
+            border-top: 1px solid #1a4a3a;
+            padding-top: 20px;
+        }
+        
+        .menu-item.logout:hover {
+            color: #999999;
+            background-color: #1a1a1a;
+        }
+        
         .sidebar-toggle {
             position: fixed;
-            left: 260px;
-            top: 10px;
-            background: #2c3e50;
+            left: 20px;
+            top: 20px;
+            background: #2d7a5f;
             color: white;
             border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            border-radius: 4px;
+            width: 40px;
+            height: 40px;
             cursor: pointer;
             z-index: 1001;
             display: none;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .sidebar-toggle:hover {
+            background: #3d8a6f;
         }
         
         @media (max-width: 768px) {
             .sidebar {
-                left: -250px;
+                left: -260px;
             }
             .sidebar.open {
                 left: 0;
@@ -111,54 +197,69 @@
                 display: block;
             }
         }
+        
+        /* Overlay pour mobile */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
     </style>
-    <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Bouton de toggle pour mobile -->
     <button class="sidebar-toggle" onclick="toggleSidebar()">
         <i class="fas fa-bars"></i>
     </button>
+    
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="../sql/banque.png" alt="Logo Banque">
-            <h3>Admin Bank</h3>
+            <img src="../sql/banque.png" alt="Logo Bank">
+            <h3>ADMIN BANK</h3>
         </div>
         
         <div class="sidebar-menu">
-            <!-- Tableau de bord -->
             <a href="interests_report.php" class="menu-item">
-                <i class="fas fa-tachometer-alt"></i>
+                <i class="fas fa-chart-line"></i>
                 <span class="menu-label">Tableau de bord</span>
             </a>
             
-            <!-- Gestion des fonds -->
             <div class="menu-item has-submenu" onclick="toggleSubmenu(this)">
-                <i class="fas fa-money-bill-wave"></i>
+                <i class="fas fa-wallet"></i>
                 <span class="menu-label">Gestion des fonds</span>
             </div>
             <div class="submenu">
                 <a href="add-fond.php" class="menu-item">
-                    <i class="fas fa-plus-circle"></i>
+                    <i class="fas fa-plus"></i>
                     <span class="menu-label">Ajouter des fonds</span>
                 </a>
             </div>
             
-            <!-- Gestion des prêts -->
             <div class="menu-item has-submenu" onclick="toggleSubmenu(this)">
-                <i class="fas fa-hand-holding-usd"></i>
+                <i class="fas fa-handshake"></i>
                 <span class="menu-label">Gestion des prêts</span>
             </div>
             <div class="submenu">
                 <a href="typePret.php" class="menu-item">
-                    <i class="fas fa-tags"></i>
+                    <i class="fas fa-tag"></i>
                     <span class="menu-label">Types de prêt</span>
                 </a>
                 <a href="fairePret.php" class="menu-item">
-                    <i class="fas fa-clipboard-list"></i>
+                    <i class="fas fa-file-contract"></i>
                     <span class="menu-label">Faire un prêt</span>
                 </a>
                 <a href="listePret.php" class="menu-item">
@@ -167,19 +268,22 @@
                 </a>
             </div>
             
-            <!-- Rapports -->
             <div class="menu-item has-submenu" onclick="toggleSubmenu(this)">
                 <i class="fas fa-chart-bar"></i>
                 <span class="menu-label">Rapports</span>
             </div>
             <div class="submenu">
                 <a href="interests_report.php" class="menu-item">
-                    <i class="fas fa-coins"></i>
+                    <i class="fas fa-percentage"></i>
                     <span class="menu-label">Intérêts mensuels</span>
                 </a>
+                <a href="interests_chart.php" class="menu-item">
+                    <i class="fas fa-percentage"></i>
+                    <span class="menu-label">Graphique</span>
+                </a>
             </div>
-            <!-- Déconnexion -->
-            <a href="../index.html" class="menu-item" style="color: #e74c3c;">
+            
+            <a href="../index.html" class="menu-item logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="menu-label">Déconnexion</span>
             </a>
@@ -187,31 +291,38 @@
     </div>
 
     <script>
-        // Fonction pour toggle la sidebar sur mobile
         function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
         }
         
-        // Fonction pour toggle les sous-menus
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+        
         function toggleSubmenu(element) {
             element.classList.toggle('open');
         }
         
-        // Marquer l'item actif selon la page courante
         document.addEventListener('DOMContentLoaded', function() {
             const currentPage = window.location.pathname.split('/').pop();
-            const menuItems = document.querySelectorAll('.menu-item');
+            const menuItems = document.querySelectorAll('.menu-item[href]');
             
             menuItems.forEach(item => {
                 if (item.getAttribute('href') === currentPage) {
                     item.classList.add('active');
                     
-                    // Ouvrir le sous-menu parent si nécessaire
                     const submenu = item.closest('.submenu');
                     if (submenu) {
                         const parentItem = submenu.previousElementSibling;
                         parentItem.classList.add('open');
-                        submenu.style.maxHeight = submenu.scrollHeight + 'px';
                     }
                 }
             });
