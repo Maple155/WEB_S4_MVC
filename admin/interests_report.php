@@ -88,7 +88,6 @@
 
 <body>
   <div class="main-content">
-    <h1>Intérêts Mensuels</h1>
 
     <div class="filter-container">
       <input type="month" id="startDate">

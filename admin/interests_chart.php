@@ -76,7 +76,6 @@
 </head>
 <body>
   <div class="main-content">
-    <h1>Graphique des Intérêts Mensuels</h1>
 
     <div class="filter-container">
       <input type="month" id="startDate">

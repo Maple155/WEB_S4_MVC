@@ -84,7 +84,7 @@
 
 <body>
   <div class="main-content">
-    <h1>Types de prêts</h1>
+
 
     <div class="form-container">
       <input type="hidden" id="id">
