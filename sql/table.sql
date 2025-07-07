@@ -38,6 +38,8 @@ CREATE TABLE pret (
    montant DECIMAL(15,0) NOT NULL,
    date_debut DATE NOT NULL,
    duree_mois INT NOT NULL,
+   assurance DECIMAL(5,2) DEFAULT 0, 
+   delai_mois INT DEFAULT 0,
    id_type_pret INT NOT NULL,
    id_client INT NOT NULL,
    PRIMARY KEY(id_pret),
@@ -47,7 +49,9 @@ CREATE TABLE pret (
 
 CREATE TABLE mensualite (
    id_mensualite INT AUTO_INCREMENT,
-   montant DECIMAL(15,0) NOT NULL,
+   capital DECIMAL(15,0) NOT NULL,
+   interet DECIMAL(15,0) NOT NULL,
+   assurance DECIMAL(15,0) DEFAULT 0,
    mois INT,
    annee INT,
    id_pret INT NOT NULL,
