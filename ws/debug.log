@@ -1,0 +1,11 @@
+Méthode appelée
+flight\util\Collection Object
+(
+    [data:flight\util\Collection:private] => Array
+        (
+            [date_debut] => 2023-01
+            [date_fin] => 2023-12
+        )
+
+)
+
