@@ -4,6 +4,11 @@
     // error_reporting(E_ALL);
 
     class Demande {
+        public static function getAllPrets() {
+            $db = getDB();
+            $stmt = $db->query("SELECT p.*, tp.nom AS nom_type_pret, tp.id_type_pret, c.* FROM pret p JOIN type_pret tp on tp.id_type_pret=p.id_type_pret JOIN client c on c.id_client=p.id_client");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
         public static function getAllTypePrets() {
             $db = getDB();
             $stmt = $db->query("SELECT * FROM type_pret");
