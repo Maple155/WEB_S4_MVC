@@ -222,7 +222,6 @@ include 'sidebar.php';
     <div class="main-content">
         <div class="form-container">
             <div class="form-header">
-                <img src="https://via.placeholder.com/60/2d7a5f/ffffff?text=€" alt="Logo Bank" class="logo">
                 <h1>AJOUTER FOND</h1>
                 <div class="subtitle">Injection de liquidité dans le système</div>
             </div>

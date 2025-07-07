@@ -51,8 +51,8 @@
         }
         
         .sidebar-header img {
-            width: 80px;      /* Agrandi de 50px à 80px */
-            height: 80px;     /* Agrandi de 50px à 80px */
+            width: 80px;      
+            height: 80px;     
             border-radius: 50%;
             border: 2px solid #2d7a5f;
             margin-bottom: 15px;
