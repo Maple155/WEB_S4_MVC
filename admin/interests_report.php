@@ -90,7 +90,7 @@ include 'sidebar.php';
             messageEl.textContent = 'Chargement...';
             messageEl.className = '';
             
-            const data = `start=${startDate}&end=${endDate}`;
+            const data = `date_debut=${startDate}&date_fin=${endDate}`;
             
             ajax("GET", "admin/interets", data, function(response) {
                 if (response.error) {
