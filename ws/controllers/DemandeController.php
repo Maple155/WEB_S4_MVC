@@ -14,16 +14,19 @@ class DemandeController {
         Flight::json($typePret);
     }
 
-    // // Créer une nouvelle demande de prêt
-    // public static function createPret() {
-    //     $data = Flight::request()->data;
-    //     $id = Demande::createPret($data);
-    //     $dateFormatted = Utils::formatDate(date('Y-m-d')); // Exemple d’utilisation de Utils
-    //     Flight::json(['message' => 'Prêt créé', 'id' => $id]);
-    // }
+    public static function createPret() {
+        $data = Flight::request()->data;
+        $message = Demande::createPret($data);
+        Flight::json(['message' => $message['message']]);
+    }
 
     public static function getCurrentClient() {
         $client = Demande::getCurrentClient();
         Flight::json($client);
+    }
+
+    public static function getAllClient() {
+        $clients = Demande::getAllClient();
+        Flight::json($clients);
     }
 }
