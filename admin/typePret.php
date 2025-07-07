@@ -57,6 +57,12 @@ include 'sidebar.php';
 
     <h1>Type de prêts</h1>
 
+    <input type="text" id="filtre-nom" placeholder="Filtrer par nom">
+    <input type="number" id="filtre-taux" placeholder="Taux min">
+    <input type="number" id="filtre-montant-max" placeholder="Montant max">
+    <button onclick="filtrerTypePrets()">Filtrer</button>
+    <button onclick="resetFiltre()">Réinitialiser</button>
+    <br><br>
     <div>
       <input type="hidden" id="id">
       <input type="text" id="nom" placeholder="Nom">
@@ -87,6 +93,7 @@ include 'sidebar.php';
 
   <script>
     const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+    let allTypePrets = [];
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();
@@ -102,26 +109,54 @@ include 'sidebar.php';
 
     function chargerTypePrets() {
       ajax("GET", "/type_prets", null, (data) => {
-        const tbody = document.querySelector("#table-etudiants tbody");
-        tbody.innerHTML = "";
-        data.forEach(e => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${e.id_type_pret}</td>
-            <td>${e.nom}</td>
-            <td>${e.taux_interet}</td>
-            <td>${e.duree_max_mois}</td>
-            <td>${e.montant_min}</td>
-            <td>${e.montant_max}</td>
-            <td>${e.age_min}</td>
-            <td>
-              <button onclick='remplirFormulaire(${JSON.stringify(e)})'>✏️</button>
-              <button onclick='supprimerEtudiant(${e.id_type_pret})'>🗑️</button>
-            </td>
-          `;
-          tbody.appendChild(tr);
-        });
+        allTypePrets = data;
+        renderTypePrets(data);
       });
+    }
+
+    function renderTypePrets(typePrets) {
+      const tbody = document.querySelector("#table-etudiants tbody");
+      tbody.innerHTML = "";
+      typePrets.forEach(e => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${e.id_type_pret}</td>
+          <td>${e.nom}</td>
+          <td>${e.taux_interet}</td>
+          <td>${e.duree_max_mois}</td>
+          <td>${e.montant_min}</td>
+          <td>${e.montant_max}</td>
+          <td>${e.age_min}</td>
+          <td>
+            <button onclick='remplirFormulaire(${JSON.stringify(e)})'>✏️</button>
+            <button onclick='supprimerEtudiant(${e.id_type_pret})'>🗑️</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filtrerTypePrets() {
+      const nom = document.getElementById("filtre-nom").value.toLowerCase();
+      const tauxMin = parseFloat(document.getElementById("filtre-taux").value) || 0;
+      const montantMax = parseFloat(document.getElementById("filtre-montant-max").value) || Infinity;
+
+      const resultat = allTypePrets.filter(e => {
+        return (
+          e.nom.toLowerCase().includes(nom) &&
+          parseFloat(e.taux_interet) >= tauxMin &&
+          parseFloat(e.montant_max) <= montantMax
+        );
+      });
+
+      renderTypePrets(resultat);
+    }
+
+    function resetFiltre() {
+      document.getElementById("filtre-nom").value = "";
+      document.getElementById("filtre-taux").value = "";
+      document.getElementById("filtre-montant-max").value = "";
+      renderTypePrets(allTypePrets);
     }
 
     function ajouterOuModifier() {

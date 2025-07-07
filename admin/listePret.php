@@ -1,5 +1,4 @@
 <?php
-// En haut de chaque page admin
 include 'sidebar.php';
 ?>
 <!DOCTYPE html>
@@ -55,12 +54,16 @@ include 'sidebar.php';
 <body>
   <div class="main-content">
 
-    <h1>Type de prêts</h1>
+    <h1>Liste de tous les prêts</h1>
+    <input type="text" id="filtre-montant" placeholder="Filtrer par montant min">
+    <input type="text" id="filtre-client" placeholder="Filtrer par client">
+    <input type="text" id="filtre-type" placeholder="Filtrer par type de prêt">
+    <button onclick="filtrerPrets()">Filtrer</button>
+    <button onclick="resetFiltre()">Réinitialiser</button>
 
     <table id="table-etudiants">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Montant</th>
           <th>Date de début</th>
           <th>Duree mois</th>
@@ -76,7 +79,8 @@ include 'sidebar.php';
   </div>
 
   <script>
-    const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
+    const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+    let allPrets = [];
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();
@@ -92,26 +96,57 @@ include 'sidebar.php';
 
     function chargerPrets() {
       ajax("GET", "/prets", null, (data) => {
-        const tbody = document.querySelector("#table-etudiants tbody");
-        tbody.innerHTML = "";
-        data.forEach(e => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${e.id_pret}</td>
-            <td>${e.montant}</td>
-            <td>${e.date_debut}</td>
-            <td>${e.duree_mois}</td>
-            <td>${e.assurance}</td>
-            <td>${e.delai_mois}</td>
-            <td>${e.nom_type_pret}</td>
-            <td>${e.prenom}</td>
-            <td>
-              <button onclick='creerPdf(${e.id_pret})'>✏️</button>
-            </td>
-          `;
-          tbody.appendChild(tr);
-        });
+        allPrets = data; 
+        renderPrets(data);
       });
+    }
+
+    function renderPrets(prets) {
+      const tbody = document.querySelector("#table-etudiants tbody");
+      tbody.innerHTML = "";
+      prets.forEach(e => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${e.montant}</td>
+          <td>${e.date_debut}</td>
+          <td>${e.duree_mois}</td>
+          <td>${e.assurance}</td>
+          <td>${e.delai_mois}</td>
+          <td>${e.nom_type_pret}</td>
+          <td>${e.prenom}</td>
+          <td>
+            <button onclick='creerPdf(${e.id_pret})'>📄 PDF</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filtrerPrets() {
+      const montantMinStr = document.getElementById("filtre-montant").value.trim();
+      const montantMin = montantMinStr === "" ? null : parseFloat(montantMinStr);
+      const client = document.getElementById("filtre-client").value.trim().toLowerCase();
+      const type = document.getElementById("filtre-type").value.trim().toLowerCase();
+
+      const resultat = allPrets.filter(e => {
+        const okMontant = montantMin === null || parseFloat(e.montant) >= montantMin;
+
+        const nomComplet = ((e.prenom || "") + " " + (e.nom || "")).toLowerCase();
+        const okClient = !client || nomComplet.includes(client) || (e.prenom && e.prenom.toLowerCase().includes(client));
+
+        const okType = !type || (e.nom_type_pret && e.nom_type_pret.toLowerCase().includes(type));
+
+        return okMontant && okClient && okType;
+      });
+
+      renderPrets(resultat);
+    }
+
+    function resetFiltre() {
+      document.getElementById("filtre-montant").value = "";
+      document.getElementById("filtre-client").value = "";
+      document.getElementById("filtre-type").value = "";
+      renderPrets(allPrets);
     }
 
     function creerPdf($id) {
