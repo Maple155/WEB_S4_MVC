@@ -80,7 +80,7 @@
 </head>
 <body>
     <div class="login-container">
-        <img src="https://via.placeholder.com/80" alt="Logo Banque" class="logo">
+        <img src="../sql/banque.png" alt="Logo Banque" class="logo">
         <h1>Espace Administrateur</h1>
             <input type="text" id="nom" placeholder="Nom de l'établissement" required>
             <input type="password" id="mdp" placeholder="Mot de passe" required>
@@ -92,7 +92,7 @@
     </div>
 
     <script>
-        const apiBase = "http://localhost/WEB_S4_MVC/ws/";
+        const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws/";
 
     function ajax(method, url, data, callback) {
       const xhr = new XMLHttpRequest();

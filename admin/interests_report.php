@@ -35,7 +35,7 @@ include 'sidebar.php';
 </head>
 <body>
     <div class="login-container">
-        <img src="https://via.placeholder.com/80" alt="Logo Banque" class="logo">
+        <img src="../sql/banque.png" alt="Logo Banque" class="logo">
         <h1>Intérêts Mensuels</h1>
         
         <div class="filter-container">
@@ -64,7 +64,7 @@ include 'sidebar.php';
     </div>
 
     <script>
-        const apiBase = "http://localhost/WEB_S4_MVC/ws/";
+        const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws/";
         
         // Chargement initial
         document.addEventListener('DOMContentLoaded', function() {
