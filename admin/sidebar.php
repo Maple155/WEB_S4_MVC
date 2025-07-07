@@ -51,13 +51,14 @@
         }
         
         .sidebar-header img {
-            width: 50px;
-            height: 50px;
+            width: 80px;      /* Agrandi de 50px à 80px */
+            height: 80px;     /* Agrandi de 50px à 80px */
             border-radius: 50%;
             border: 2px solid #2d7a5f;
             margin-bottom: 15px;
             opacity: 0.9;
         }
+
         
         .sidebar-header h3 {
             font-size: 18px;
@@ -227,7 +228,7 @@
 
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="https://via.placeholder.com/50/2d7a5f/ffffff?text=B" alt="Logo Bank">
+            <img src="../sql/banque.png" alt="Logo Bank">
             <h3>ADMIN BANK</h3>
         </div>
         
