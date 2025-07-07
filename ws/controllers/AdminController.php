@@ -29,8 +29,8 @@ class AdminController {
     public function getInterestsByPeriod() {
         // Récupération des paramètres
         $params = Flight::request()->query;
-        $date_debut = $params['debut'] ?? date('Y-m-01', strtotime('-1 year'));
-        $date_fin = $params['fin'] ?? date('Y-m-t');
+        $date_debut = $params['date_debut'] ?? date('Y-m-01', strtotime('-1 year'));
+        $date_fin = $params['date_fin'] ?? date('Y-m-t');
 
         // Validation des dates
         if (!strtotime($date_debut) || !strtotime($date_fin)) {

@@ -38,6 +38,30 @@ class EF {
             GROUP BY YEAR(p.date_debut), MONTH(p.date_debut)
             ORDER BY annee, mois
         ";
+        // $query = "
+        //                 SELECT 
+        //                     m.annee,
+        //                     m.mois,
+        //                     CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+        //                     COUNT(DISTINCT m.id_pret) AS nombre_prets,
+        //                     SUM(p.montant) AS capital_total,
+        //                     ROUND(SUM(
+        //                         (p.montant * (tp.taux_interet/100) / 12
+        //                     ), 2) AS interets_mensuels
+        //                 FROM 
+        //                     mensualite m
+        //                 JOIN 
+        //                     pret p ON m.id_pret = p.id_pret
+        //                 JOIN 
+        //                     type_pret tp ON p.id_type_pret = tp.id_type_pret
+        //                 WHERE 
+        //                     CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) BETWEEN :periode_debut AND :periode_fin
+        //                     AND m.montant > 0  -- Exclure les éventuelles mensualités nulles
+        //                 GROUP BY 
+        //                     m.annee, m.mois
+        //                 ORDER BY 
+        //                     m.annee, m.mois;
+        //         ";
         
         $stmt = $db->prepare($query);
         $stmt->execute([
