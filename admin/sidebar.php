@@ -161,9 +161,9 @@
                     <i class="fas fa-tags"></i>
                     <span class="menu-label">Types de prêt</span>
                 </a>
-                <a href="view_loans.php" class="menu-item">
+                <a href="../fairePret.php" class="menu-item">
                     <i class="fas fa-clipboard-list"></i>
-                    <span class="menu-label">Voir les prêts</span>
+                    <span class="menu-label">Faire un prêt</span>
                 </a>
             </div>
             
