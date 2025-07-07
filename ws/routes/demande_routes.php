@@ -7,3 +7,4 @@ Flight::route('GET /type_prets/@id', ['DemandeController', 'getTypePretById']);
 Flight::route('POST /prets', ['DemandeController', 'createPret']);
 
 Flight::route('GET /currentClient', ['DemandeController', 'getCurrentClient']);
+Flight::route('GET /allClients', ['DemandeController', 'getAllClient']);
