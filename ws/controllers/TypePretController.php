@@ -20,7 +20,7 @@ class TypePretController {
     }
 
     public static function update($id) {
-        $data = Flight::request()->data;
+        parse_str(file_get_contents('php://input'), $data);
         TypePret::update($id, $data);
         Flight::json(['message' => 'Pret modifié']);
     }

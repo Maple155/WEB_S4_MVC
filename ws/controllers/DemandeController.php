@@ -4,6 +4,11 @@ require_once __DIR__ . '/../helpers/Utils.php';
 
 class DemandeController {
 
+    public static function getAllPrets() {
+        $prets = Demande::getAllPrets();
+        Flight::json($prets);
+    }
+
     public static function getAllTypePrets() {
         $typePrets = Demande::getAllTypePrets();
         Flight::json($typePrets);

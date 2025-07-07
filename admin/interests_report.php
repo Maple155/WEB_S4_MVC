@@ -76,7 +76,7 @@ include 'sidebar.php';
     </div>
 
     <script>
-        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws/";
+const apiBase = "http://localhost/Git/WEB_S4_MVC/ws/";
         
         // Chargement initial
         document.addEventListener('DOMContentLoaded', function() {

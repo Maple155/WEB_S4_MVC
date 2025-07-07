@@ -124,7 +124,7 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="https://via.placeholder.com/80" alt="Logo Banque">
+            <img src="../sql/banque.png" alt="Logo Banque">
             <h3>Admin Bank</h3>
         </div>
         
@@ -160,6 +160,10 @@
                 <a href="fairePret.php" class="menu-item">
                     <i class="fas fa-clipboard-list"></i>
                     <span class="menu-label">Faire un prêt</span>
+                </a>
+                <a href="listePret.php" class="menu-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span class="menu-label">Liste des prêts</span>
                 </a>
             </div>
             

@@ -1,6 +1,6 @@
 <?php 
 // En haut de chaque page admin
-include 'sidebar.php'; 
+// include 'admin/sidebar.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,74 +8,57 @@ include 'sidebar.php';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prêt</title>
-    <style>
-      .main-content {
-      margin-left: 250px;
-      /* largeur de la sidebar */
-      padding: 20px;
-      transition: margin-left 0.3s;
-    }
-
-    @media (max-width: 768px) {
-      .main-content {
-        margin-left: 0;
-      }
-    }
-    </style>
   </head>
   <body>
-    <div class="main-content">
-
-      <h1>Faire un prets</h1>
-      <div>
-        <p class="client"></p>
-        <p class="type_pret"></p>
-        <label for="montant"> Montant demandé : </label>
-        <input
+    <h1>Faire un prets</h1>
+    <div>
+      <p class="client"></p>
+      <p class="type_pret"></p>
+      <label for="montant"> Montant demandé : </label>
+      <input
         type="number"
         id="montant"
         name="montant"
         min="0"
         placeholder="100000, 2000000, ..."
-        />
-        <br /><br />
-        <label for="mois_max">Mois max : </label>
-        <input
+      />
+      <br /><br />
+      <label for="mois_max">Mois max : </label>
+      <input
         type="number"
         id="mois_max"
         name="mois_max"
         min="0"
         placeholder="10, 20, ..."
-        />
-        <br /><br />
-        <label for="assurance">Assurance (%) : </label>
-        <input 
+      />
+      <br /><br />
+      <label for="assurance">Assurance (%) : </label>
+      <input 
         type="number" 
         id="assurance" 
         name="assurance" 
         placeholder="2, 3.44, ..." 
         step="0.01"
         min="0"
-        />
-        
-        <br /><br />
-        <label for="">Delai 1er rembouresement : </label>
-        <input type="number" id="delai" name="delai" placeholder="2">
-        <br /><br />
-        <button onclick="demanderPret()">Confirmer</button>
-        <button onclick="simulerPret()">Simuler</button>
-        <p id="messagePret" style="color: green; font-weight: bold"></p>
-      </div>
-      <div id="simulationResult"></div>
+      />
+
+      <br /><br />
+      <label for="">Delai 1er rembouresement : </label>
+      <input type="number" id="delai" name="delai" placeholder="2">
+      <br /><br />
+      <button onclick="demanderPret()">Confirmer</button>
+      <button onclick="simulerPret()">Simuler</button>
+      <p id="messagePret" style="color: green; font-weight: bold"></p>
     </div>
-      
-      <script>
-        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
-        
-        function ajax(method, url, data, callback) {
-          const xhr = new XMLHttpRequest();
-          xhr.open(method, apiBase + url, true);
-          xhr.setRequestHeader(
+    <div id="simulationResult"></div>
+
+    <script>
+      const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+
+      function ajax(method, url, data, callback) {
+        const xhr = new XMLHttpRequest();
+        xhr.open(method, apiBase + url, true);
+        xhr.setRequestHeader(
           "Content-Type",
           "application/x-www-form-urlencoded"
         );
