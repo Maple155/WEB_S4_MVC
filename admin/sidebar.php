@@ -161,6 +161,10 @@
                     <i class="fas fa-clipboard-list"></i>
                     <span class="menu-label">Faire un prêt</span>
                 </a>
+                <a href="listePret.php" class="menu-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span class="menu-label">Liste des prêts</span>
+                </a>
             </div>
             
             <!-- Rapports -->
