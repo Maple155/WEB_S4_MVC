@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/Demande.php';
+require_once __DIR__ . '/../models/Mensualite.php';
 require_once __DIR__ . '/../helpers/Utils.php';
 require 'fpdf/fpdf.php';
 
@@ -68,8 +69,8 @@ class DemandeController
         $assurance = $pret['assurance'];
         $delai = $pret['delai_mois'] ?? 0;
 
-        $mensualite = Demande::calculAnnuite($montant, $taux, $mois);
-        $tableau = Demande::tableauAmortissement($montant, $taux, $mois, $assurance);
+        $mensualite = Mensualite::getMensualiteParPret($pret_id);
+        $tableau = Demande::tableauAmortissement($montant, $taux, $mois-$delai, $assurance, $pret_id);
 
         // Calculs des totaux
         $total_interets = array_sum(array_column($tableau, 'interet'));

@@ -1,3 +1,15 @@
+CREATE DATABASE tp_flight CHARACTER SET utf8mb4;
+
+USE tp_flight;
+
+CREATE TABLE etudiant (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100),
+    prenom VARCHAR(100),
+    email VARCHAR(100),
+    age INT
+);
+
 CREATE TABLE etablissement_financiere (
    id_etablissement INT AUTO_INCREMENT,
    nom VARCHAR(50) NOT NULL,

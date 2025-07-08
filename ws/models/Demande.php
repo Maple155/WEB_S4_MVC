@@ -236,15 +236,29 @@ class Demande
         return ['message' => 'Simulation générées avec succès'];
     }
 
+    public static function getMensualiteParPret($id) {
+    $db = getDB();
+    $stmt = $db->prepare("SELECT 
+        (capital + interet + assurance) AS mensualite_totale
+    FROM 
+        mensualite
+    WHERE 
+        id_pret = ?
+    LIMIT 1");
+    $stmt->execute([$id]);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result[0]['mensualite_totale'];
+}
+
     public static function calculAnnuite($capital, $taux_annuel, $mois)
     {
         $taux_mensuel = $taux_annuel / 12 / 100;
         return $capital * $taux_mensuel / (1 - pow(1 + $taux_mensuel, -$mois));
     }
 
-    public static function tableauAmortissement($capital, $taux_annuel, $mois, $assurance)
+    public static function tableauAmortissement($capital, $taux_annuel, $mois, $assurance, $id)
     {
-        $mensualite = self::calculAnnuite($capital, $taux_annuel, $mois);
+        $mensualite = self::getMensualiteParPret($id);
         $taux_mensuel = $taux_annuel / 12 / 100;
 
         $tableau = [];
@@ -282,30 +296,6 @@ class Demande
         }
 
         return $tableau;
-    }
-
-    public static function verifierCalculs($capital, $taux_annuel, $mois, $assurance)
-    {
-        $mensualite = self::calculAnnuite($capital, $taux_annuel, $mois);
-        $tableau = self::tableauAmortissement($capital, $taux_annuel, $mois, $assurance);
-
-        $total_principal = array_sum(array_column($tableau, 'principal'));
-        $total_interets = array_sum(array_column($tableau, 'interet'));
-        $total_assurance = array_sum(array_column($tableau, 'assurance'));
-
-        echo "=== VÉRIFICATION DES CALCULS ===\n";
-        echo "Capital initial: " . number_format($capital, 2) . " Ar\n";
-        echo "Mensualité (hors assurance): " . number_format($mensualite, 2) . " Ar\n";
-        echo "Total principal remboursé: " . number_format($total_principal, 2) . " Ar\n";
-        echo "Total intérêts payés: " . number_format($total_interets, 2) . " Ar\n";
-        echo "Total assurance payée: " . number_format($total_assurance, 2) . " Ar\n";
-        echo "Différence capital: " . number_format($capital - $total_principal, 2) . " Ar\n";
-
-        if (abs($capital - $total_principal) < 1) {
-            echo "✓ Calculs cohérents\n";
-        } else {
-            echo "✗ Erreur dans les calculs\n";
-        }
     }
 
 }

@@ -572,7 +572,7 @@ include 'sidebar.php';
                         </div>
                         <div class="summary-item">
                             <div class="summary-label">Durée</div>
-                            <div class="summary-value">${duree} mois</div>
+                            <div class="summary-value">${duree_initial} mois</div>
                         </div>
                         <div class="summary-item">
                             <div class="summary-label">Taux annuel</div>
