@@ -199,26 +199,289 @@
                 padding: 5px;
             }
         }
+        .filtre-container {
+            background-color: #1a1a1a;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #2d7a5f;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .filtre-container label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            display: block;
+            color: #ccc;
+        }
+
+        .filtre-container input[type="text"],
+        .filtre-container input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            background-color: #111;
+            color: #fff;
+            border: 1px solid #2d7a5f;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .filtre-container input:focus {
+            border-color: #3d8a6f;
+            outline: none;
+        }
+
+        .filtre-container button {
+            background-color: #2d7a5f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .filtre-container button:hover {
+            background-color: #3d8a6f;
+        }
+        .filter-and-list-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        /* Cartes */
+        .filter-card {
+            background-color: #1a1a1a;
+            border: 1px solid #2d7a5f;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .filter-card h3, .simulation-card h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #2d7a5f;
+            font-size: 1.3em;
+            border-bottom: 1px solid #2d7a5f;
+            padding-bottom: 5px;
+        }
+        .simulation-card {
+            flex: 1.5; /* Augmente un peu la largeur par rapport à la carte filtres */
+            max-height: 500px; /* Hauteur max fixe, ajuste selon besoin */
+            overflow-y: auto; /* Scroll vertical si dépassement */
+            padding: 20px;
+            background-color: #1b1b1b;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(45, 122, 95, 0.5);
+            color: #eee;
+        }
+
+        /* Form controls */
+        .form-control {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form-control label {
+            margin-bottom: 5px;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .form-control input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #2d7a5f;
+            background-color: #111;
+            color: #fff;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Bouton principal */
+        .full-button {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            background-color: #2d7a5f;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .full-button:hover {
+            background-color: #3d8a6f;
+        }
+
+        /* Liste des simulations */
+        .simulation-card div {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .simulation-card input[type="checkbox"] {
+            transform: scale(1.2);
+            margin-right: 10px;
+            accent-color: #2d7a5f;
+        }
+
+        .simulation-card span {
+            color: #eee;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .filter-and-list-container {
+                flex-direction: column;
+            }
+
+            .filter-card, .simulation-card {
+                max-width: 100%;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+        }
+        .buttons-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .full-button {
+            flex: 1; /* Les boutons prennent la même largeur */
+            padding: 10px;
+            background-color: #2d7a5f;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .full-button:hover {
+            background-color: #3d8a6f;
+        }
+
+        /* Optionnel: pour différencier légèrement le bouton comparer */
+        .compare-button {
+            background-color: #226644;
+        }
+
+        .compare-button:hover {
+            background-color: #2e8054;
+        }
+
+
     </style>
 </head>
 <body>
+<h2>Comparer deux simulations</h2>
 
-    <h2>Comparer deux simulations</h2>
-    <div class="form-group" id="simulationsList" style="flex-direction: column; align-items: flex-start;">
-        <!-- Les cases à cocher seront injectées ici -->
+    <div class="filter-and-list-container">
+
+        <!-- Carte Filtres -->
+        <div class="filter-card">
+            <h3> Filtres</h3>
+
+            <div class="form-control">
+                <label for="filtreType">Type de prêt</label>
+                <input type="text" id="filtreType" placeholder="ex: Immobilier" />
+            </div>
+
+            <div class="form-control">
+                <label for="filtreClient">Client</label>
+                <input type="text" id="filtreClient" placeholder="ex: Rakoto" />
+            </div>
+
+            <div class="form-row">
+                <div class="form-control">
+                    <label for="filtreMontantMin">Montant min</label>
+                    <input type="number" id="filtreMontantMin" placeholder="ex: 500000" />
+                </div>
+                <div class="form-control">
+                    <label for="filtreMontantMax">Montant max</label>
+                    <input type="number" id="filtreMontantMax" placeholder="ex: 5000000" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-control">
+                    <label for="filtreDureeMin">Durée min (mois)</label>
+                    <input type="number" id="filtreDureeMin" />
+                </div>
+                <div class="form-control">
+                    <label for="filtreDureeMax">Durée max (mois)</label>
+                    <input type="number" id="filtreDureeMax" />
+                </div>
+            </div>
+            <div class="buttons-row">
+                <button class="full-button" onclick="appliquerFiltres()">Appliquer les filtres</button>
+                <button class="full-button compare-button" onclick="comparerSimulations()">Comparer</button>
+            </div>
+        </div>
+
+        <!-- Carte Simulations -->
+        <div class="simulation-card" id="simulationsList">
+            <h3> Choisissez deux simulations</h3>
+            <!-- les cases à cocher seront injectées ici -->
+        </div>
+
     </div>
-    <div class="form-group">
-        <button onclick="comparerSimulations()">Comparer</button>
-    </div>
+    <div id="comparisonResult"></div>
+
+    
 
 
     <div id="comparisonResult"></div>
 
     <script>
-        const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
-        // const apiBase = "/ETU003113/t/WEB_S4_MVC/ws";
+        // const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+        const apiBase = "/ETU003113/t/WEB_S4_MVC/ws";
 
         let simulationsGlobales = [];
+        function appliquerFiltres() {
+            const type = document.getElementById("filtreType").value.toLowerCase();
+            const client = document.getElementById("filtreClient").value.toLowerCase();
+            const montantMin = parseFloat(document.getElementById("filtreMontantMin").value) || 0;
+            const montantMax = parseFloat(document.getElementById("filtreMontantMax").value) || Infinity;
+            const dureeMin = parseInt(document.getElementById("filtreDureeMin").value) || 0;
+            const dureeMax = parseInt(document.getElementById("filtreDureeMax").value) || Infinity;
+
+            const filtres = simulationsGlobales.filter(sim => {
+                const typeMatch = !type || (sim.nom && sim.nom.toLowerCase().includes(type));
+                const clientMatch = !client || (sim.nom_client && sim.nom_client.toLowerCase().includes(client));
+                const montant = parseFloat(sim.montant);
+                const montantMatch = montant >= montantMin && montant <= montantMax;
+                const duree = parseInt(sim.duree_mois);
+                const dureeMatch = duree >= dureeMin && duree <= dureeMax;
+
+                return typeMatch && clientMatch && montantMatch && dureeMatch;
+            });
+
+            afficherSimulations(filtres);
+        }
 
         function ajax(method, url, data, callback) {
             const xhr = new XMLHttpRequest();
@@ -249,7 +512,7 @@
             container.innerHTML = "<strong>Choisissez deux simulations :</strong>";
 
             data.forEach(sim => {
-                const label = `#${sim.id_pret} - ${parseFloat(sim.montant).toLocaleString('fr-FR')} Ar - ${sim.duree_mois} mois - ${sim.nom || "Type inconnu"}`;
+                const label = `#${sim.id_pret} - ${parseFloat(sim.montant).toLocaleString('fr-FR')} Ar - ${sim.duree_mois} mois - ${sim.nom || "Type inconnu"} - ${sim.nom_client || "client inconnu"}`;
 
                 const div = document.createElement("div");
                 div.style.marginBottom = "8px";
@@ -513,8 +776,8 @@
                 html += `</tbody></table></div>`;
                 html += `
                     <div style="text-align:center; margin-top: 30px;">
-                        <button onclick='sauverPretSimulation(${JSON.stringify(s1)})'>💾 Changer en pret #${s1.id_pret}</button>
-                        <button onclick='sauverPretSimulation(${JSON.stringify(s2)})'>💾 Changer en pret #${s2.id_pret}</button>
+                        <button onclick='sauverPretSimulation(${JSON.stringify(s1)})'> Changer la simulation #${s1.id_pret} en pret</button>
+                        <button onclick='sauverPretSimulation(${JSON.stringify(s2)})'> Changer la simulation #${s2.id_pret} en pret</button>
                     </div>
                 `;
 

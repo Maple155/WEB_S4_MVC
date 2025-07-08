@@ -89,18 +89,18 @@ class Demande
 
         $argentActuel = self::getArgentActuel();
 
-        if ($typePret['montant_max'] < $data->montant) {
-            return 'Le montant du prêt ne doit pas être supérieur à ' . $typePret['montant_max'];
-        }
-        if ($typePret['montant_min'] > $data->montant) {
-            return 'Le montant du prêt ne doit pas être inférieur à ' . $typePret['montant_min'];
-        }
-        if ($age < $typePret['age_min']) {
-            return "L'âge minimum pour un prêt est de {$typePret['age_min']} ans";
-        }
-        if ($data->mois_max > $typePret['duree_max_mois']) {
-            return 'La durée maximale de remboursement est de ' . $typePret['duree_max_mois'] . ' mois';
-        }
+        // if ($typePret['montant_max'] < $data->montant) {
+        //     return 'Le montant du prêt ne doit pas être supérieur à ' . $typePret['montant_max'];
+        // }
+        // if ($typePret['montant_min'] > $data->montant) {
+        //     return 'Le montant du prêt ne doit pas être inférieur à ' . $typePret['montant_min'];
+        // }
+        // if ($age < $typePret['age_min']) {
+        //     return "L'âge minimum pour un prêt est de {$typePret['age_min']} ans";
+        // }
+        // if ($data->mois_max > $typePret['duree_max_mois']) {
+        //     return 'La durée maximale de remboursement est de ' . $typePret['duree_max_mois'] . ' mois';
+        // }
         if ($data->montant > $argentActuel) {
             return "L'argent disponible est insuffisant";
         }
@@ -164,8 +164,8 @@ class Demande
             return ['message' => 'Client introuvable ou date de naissance manquante'];
         }
 
-        // $validation = self::validatePretRules($data, $typePret, $client);
-        // if ($validation !== true) return ['message' => $validation];
+        $validation = self::validatePretRules($data, $typePret, $client);
+        if ($validation !== true) return ['message' => $validation];
 
         try {
             $stmt = $db->prepare("

@@ -12,7 +12,7 @@ INSERT INTO mouvement_argent (montant, date_) VALUES
 -- 3) Types de prêt
 INSERT INTO type_pret (id_type_pret, nom, taux_interet, duree_max_mois, montant_min, montant_max, age_min) VALUES
 (1, 'Prêt Consommation', 8, 24, 100000, 3000000, 18),
-(2, 'Prêt Immobilier', 5, 240, 1000000, 5000000, 21),
+(2, 'Prêt Immobilier', 5, 24, 1000000, 5000000, 21),
 (3, 'Prêt Auto', 6, 60, 500000, 4000000, 20);
 
 -- 4) Clients

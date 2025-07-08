@@ -86,13 +86,18 @@ class EF {
     }
     public static function getAllSim() {
         $db = getDB();
-        $stmt = $db->prepare("SELECT s.*, t.* FROM pret_simulation s JOIN type_pret t ON s.id_type_pret = t.id_type_pret");
+        $stmt = $db->prepare("SELECT s.*, t.*, c.nom AS nom_client FROM pret_simulation s 
+        JOIN type_pret t ON s.id_type_pret = t.id_type_pret
+        JOIN client c ON s.id_client = c.id_client");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public static function getSimById($id) {
         $db = getDB();
-        $stmt = $db->prepare("SELECT s.*, t.taux_interet FROM pret_simulation s JOIN type_pret t ON s.id_type_pret = t.id_type_pret WHERE s.id_pret = ?");
+        $stmt = $db->prepare("SELECT s.*, t.taux_interet, c.nom AS nom_client FROM pret_simulation s 
+        JOIN type_pret t ON s.id_type_pret = t.id_type_pret 
+        JOIN client c ON s.id_client = c.id_client
+        WHERE s.id_pret = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
