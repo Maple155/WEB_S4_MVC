@@ -88,7 +88,7 @@
   </div>
 
   <script>
-    const apiBase = "http://localhost/WEB_S4_MVC/ws";
+    const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
     let chartInstance = null;
 
     document.addEventListener('DOMContentLoaded', () => {
