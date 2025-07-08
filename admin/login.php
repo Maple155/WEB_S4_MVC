@@ -177,7 +177,7 @@
 
             const data = `nom=${encodeURIComponent(nom)}&mdp=${encodeURIComponent(mdp)}`;
 
-            ajax("POST", "admin/login", data, (response) => {
+            ajax("POST", "/admin/login", data, (response) => {
                 loader.style.display = "none";
                 btn.disabled = false;
 
