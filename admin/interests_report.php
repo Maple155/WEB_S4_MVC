@@ -119,7 +119,7 @@
   </div>
 
   <script>
-    const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+    const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
 
     document.addEventListener('DOMContentLoaded', () => {
       const end = new Date();

@@ -281,6 +281,10 @@
                     <i class="fas fa-percentage"></i>
                     <span class="menu-label">Graphique</span>
                 </a>
+                <a href="tableauEF.php" class="menu-item">
+                    <i class="fas fa-percentage"></i>
+                    <span class="menu-label">Fonds disponibles</span>
+                </a>
             </div>
             
             <a href="../index.html" class="menu-item logout">
