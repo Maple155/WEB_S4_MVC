@@ -204,23 +204,53 @@
 <body>
 
     <h2>Comparer deux simulations</h2>
-
+    <div class="form-group" id="simulationsList" style="flex-direction: column; align-items: flex-start;">
+        <!-- Les cases à cocher seront injectées ici -->
+    </div>
     <div class="form-group">
-        <select id="sim1">
-            <option value="">-- Simulation 1 --</option>
-        </select>
-
-        <select id="sim2">
-            <option value="">-- Simulation 2 --</option>
-        </select>
-
         <button onclick="comparerSimulations()">Comparer</button>
     </div>
+
 
     <div id="comparisonResult"></div>
 
     <script>
         const apiBase = "http://localhost/WEB_S4_MVC/ws";
+        let simulationsGlobales = [];
+
+        function chargerSimulations() {
+            ajax("GET", "/admin/simulations", null, (data) => {
+                simulationsGlobales = data;
+                afficherSimulations(data);
+            });
+        }
+
+        function afficherSimulations(data) {
+            const container = document.getElementById("simulationsList");
+            container.innerHTML = "<strong>Choisissez deux simulations :</strong>";
+
+            data.forEach(sim => {
+                const label = `#${sim.id_pret} - ${parseFloat(sim.montant).toLocaleString('fr-FR')} Ar - ${sim.duree_mois} mois - ${sim.nom_type || "Type inconnu"}`;
+
+                const div = document.createElement("div");
+                div.style.marginBottom = "8px";
+
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = "simulation";
+                checkbox.value = sim.id_pret;
+
+                const span = document.createElement("span");
+                span.textContent = " " + label;
+
+                div.appendChild(checkbox);
+                div.appendChild(span);
+                container.appendChild(div);
+            });
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            chargerSimulations();
+        });
 
         function ajax(method, url, data, callback) {
             const xhr = new XMLHttpRequest();
@@ -238,28 +268,17 @@
             };
             xhr.send(method === "GET" ? null : data);
         }
-
-        function chargerSimulations() {
-            ajax("GET", "/admin/simulations", null, (data) => {
-                const select1 = document.getElementById("sim1");
-                const select2 = document.getElementById("sim2");
-
-                [select1, select2].forEach(select => {
-                    select.innerHTML = `<option value="">-- Choisir une simulation --</option>`;
-                    data.forEach(sim => {
-                        const label = `#${sim.id_pret} - ${parseFloat(sim.montant).toLocaleString('fr-FR')} Ar - ${sim.duree_mois} mois`;
-                        const option = document.createElement("option");
-                        option.value = sim.id_pret;
-                        option.textContent = label;
-                        select.appendChild(option);
-                    });
-                });
-            });
-        }
-
+        
         function comparerSimulations() {
-            const id1 = document.getElementById("sim1").value;
-            const id2 = document.getElementById("sim2").value;
+
+            const checked = document.querySelectorAll('input[name="simulation"]:checked');
+            if (checked.length !== 2) {
+                alert("Veuillez sélectionner exactement deux simulations.");
+                return;
+            }
+
+            const id1 = checked[0].value;
+            const id2 = checked[1].value;
 
             if (!id1 || !id2 || id1 === id2) {
                 alert("Veuillez sélectionner deux simulations différentes.");
@@ -496,6 +515,15 @@
                     </div>
                 `;
 
+                document.addEventListener("change", function (e) {
+                if (e.target && e.target.name === "simulation" && e.target.type === "checkbox") {
+                    const checkboxes = document.querySelectorAll('input[name="simulation"]:checked');
+                    if (checkboxes.length > 2) {
+                        e.target.checked = false;
+                        alert("Vous ne pouvez sélectionner que deux simulations à comparer.");
+                    }
+                }
+            });
 
                 document.getElementById("comparisonResult").innerHTML = html;
                 
@@ -521,6 +549,10 @@
                 alert(data.message || "Simulation sauvegardée !");
             });
         }
+        document.addEventListener("DOMContentLoaded", () => {
+            chargerSimulations();
+        });
+
 
     </script>
 

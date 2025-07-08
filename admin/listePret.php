@@ -111,7 +111,7 @@
     </div>
 
     <script>
-        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
+        const apiBase = "http://localhost/WEB_S4_MVC/ws";
 
         let allPrets = [];
 
