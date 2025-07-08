@@ -101,8 +101,8 @@
           <tr>
             <th>Mois/Année</th>
             <th>Nombre de prêts</th>
-            <th>Capital</th>
-            <th>Intérêts</th>
+            <th>Capital (Ar)</th>
+            <th>Intérêts (Ar)</th>
           </tr>
         </thead>
         <tbody id="interestsBody">
@@ -115,7 +115,7 @@
   </div>
 
   <script>
-    const apiBase = "http://localhost/WEB_S4_MVC/ws/";
+    const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
 
     document.addEventListener('DOMContentLoaded', () => {
       const end = new Date();
@@ -142,7 +142,7 @@
 
       const data = `date_debut=${startDate}&date_fin=${endDate}`;
 
-      ajax("GET", "admin/interets", data, function(response) {
+      ajax("GET", "/admin/interets", data, function(response) {
         const tbody = document.getElementById('interestsBody');
         tbody.innerHTML = '';
 
@@ -150,6 +150,7 @@
           messageEl.textContent = response.error;
           messageEl.className = 'error';
           return;
+
         }
 
         if (response.details && response.details.length > 0) {
@@ -158,13 +159,13 @@
             row.innerHTML = `
               <td>${item.periode}</td>
               <td>${item.nombre_prets}</td>
-              <td>${parseFloat(item.capital_total).toLocaleString('fr-FR')} €</td>
-              <td>${parseFloat(item.interets_mensuels).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €</td>
+              <td>${parseFloat(item.capital_total).toLocaleString('fr-FR')} </td>
+              <td>${parseFloat(item.interets_mensuels).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} </td>
             `;
             tbody.appendChild(row);
           });
 
-          messageEl.textContent = `Total des intérêts : ${parseFloat(response.total_interets).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`;
+          messageEl.textContent = `Total des intérêts : ${parseFloat(response.total_interets).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} Ar`;
           messageEl.className = 'success';
         } else {
           messageEl.textContent = 'Aucun résultat trouvé';

@@ -31,7 +31,6 @@ include 'sidebar.php';
             max-width: 500px;
             padding: 20px;
         }
-        
         .form-container {
             background: #111111;
             padding: 40px;
@@ -222,7 +221,6 @@ include 'sidebar.php';
     <div class="main-content">
         <div class="form-container">
             <div class="form-header">
-                <img src="https://via.placeholder.com/60/2d7a5f/ffffff?text=€" alt="Logo Bank" class="logo">
                 <h1>AJOUTER FOND</h1>
                 <div class="subtitle">Injection de liquidité dans le système</div>
             </div>
@@ -251,7 +249,7 @@ include 'sidebar.php';
     </div>
 
     <script>
-        const apiBase = "http://localhost/WEB_S4_MVC/ws/";
+        const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
 
         // Définir la date d'aujourd'hui par défaut
         document.getElementById('date').valueAsDate = new Date();

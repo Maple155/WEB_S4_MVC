@@ -110,8 +110,8 @@
           <th>Nom</th>
           <th>Taux (%)</th>
           <th>Durée (mois)</th>
-          <th>Montant min</th>
-          <th>Montant max</th>
+          <th>Montant min (Ar)</th>
+          <th>Montant max (Ar)</th>
           <th>Âge min</th>
           <th>Actions</th>
         </tr>
@@ -121,7 +121,7 @@
   </div>
 
   <script>
-    const apiBase = "http://localhost/WEB_S4_MVC/ws";
+    const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
     let allTypePrets = [];
 
     function ajax(method, url, data, callback) {

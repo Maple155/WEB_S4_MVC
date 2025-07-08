@@ -124,8 +124,8 @@
         <img src="../sql/banque.png" alt="Logo Banque" />
         <h1>Espace Administrateur</h1>
 
-        <input type="text" id="nom" placeholder="Nom de l'établissement" autocomplete="username" />
-        <input type="password" id="mdp" placeholder="Mot de passe" autocomplete="current-password" />
+        <input type="text" id="nom" placeholder="Nom de l'établissement" value="MicroFinance ITU" autocomplete="username" />
+        <input type="password" id="mdp" placeholder="Mot de passe" value="admin123" autocomplete="current-password" />
         
         <button id="submitBtn" onclick="connect()">
             Se connecter
@@ -136,7 +136,7 @@
     </div>
 
     <script>
-        const apiBase = "http://localhost/WEB_S4_MVC/ws/";
+        const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
 
         function ajax(method, url, data, callback) {
             const xhr = new XMLHttpRequest();
@@ -171,13 +171,12 @@
                 return;
             }
 
-            // Affiche loader et désactive bouton
             loader.style.display = "inline-block";
             btn.disabled = true;
 
             const data = `nom=${encodeURIComponent(nom)}&mdp=${encodeURIComponent(mdp)}`;
 
-            ajax("POST", "admin/login", data, (response) => {
+            ajax("POST", "/admin/login", data, (response) => {
                 loader.style.display = "none";
                 btn.disabled = false;
 

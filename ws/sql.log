@@ -82,3 +82,615 @@
                 WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
                 GROUP BY m.annee, m.mois
                 ORDER BY m.annee, m.mois
+[2025-07-07 23:13:34] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:13:36] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:13:42] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:13:47] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:14:29] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:14:41] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2026-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:14:58] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:15:02] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:16:27] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:17:53] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:21:19] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:21:39] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:22:03] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:22:13] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:22:53] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:25:29] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:25:58] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:26:54] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:27:01] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:40:40] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:44:32] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:56:02] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:56:14] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-07-01' AND '2025-08-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:56:40] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-06-01' AND '2025-10-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:57:21] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-07 23:57:29] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-07-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 06:56:16] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 06:56:30] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-01-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 06:56:51] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-01-01' AND '2026-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 06:57:25] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 06:57:33] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-01-01' AND '2025-08-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 06:57:38] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-01-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:08:56] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:09:01] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:09:41] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:09:45] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:10:02] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:10:07] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:10:22] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:10:26] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:13:39] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:13:48] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:17:40] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:18:29] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:18:34] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:19:16] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:19:22] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:19:48] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:19:55] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:20:05] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-07-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
+[2025-07-08 07:20:09] SELECT 
+                    m.annee,
+                    m.mois,
+                    CONCAT(m.annee, '-', LPAD(m.mois, 2, '0')) AS periode,
+                    COUNT(DISTINCT m.id_pret) AS nombre_prets,
+                    SUM(m.capital) AS capital_total,
+                    ROUND(SUM(m.interet), 2) AS interets_mensuels
+                FROM mensualite m
+                JOIN pret p ON m.id_pret = p.id_pret
+                WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
+                GROUP BY m.annee, m.mois
+                ORDER BY m.annee, m.mois
