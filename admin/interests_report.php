@@ -150,6 +150,7 @@
           messageEl.textContent = response.error;
           messageEl.className = 'error';
           return;
+
         }
 
         if (response.details && response.details.length > 0) {
