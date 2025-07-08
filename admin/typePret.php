@@ -124,7 +124,7 @@
   </div>
 
   <script>
-    const apiBase = "http://localhost/WEB_S4_MVC/ws";
+    const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
     let allTypePrets = [];
 
     function ajax(method, url, data, callback) {

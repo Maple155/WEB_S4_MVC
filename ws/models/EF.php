@@ -2,6 +2,33 @@
 require_once __DIR__ . '/../db.php';
 
 class EF {
+
+    public static function getArgentParMois() {
+        $db = getDB();
+        $stmt = $db->query("WITH mouvements_par_mois AS (
+            SELECT 
+                YEAR(date_) AS annee,
+                MONTH(date_) AS mois,
+                DATE_FORMAT(date_, '%Y-%m') AS mois_annee,
+                SUM(montant) AS argent_disponible
+            FROM 
+                mouvement_argent
+            GROUP BY 
+                annee, mois, mois_annee
+            ORDER BY 
+                annee, mois
+        )
+        SELECT 
+            annee,
+            mois,
+            mois_annee,
+            argent_disponible,
+            SUM(argent_disponible) OVER (ORDER BY annee, mois) AS solde_cumulatif
+        FROM 
+            mouvements_par_mois");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
     public static function getAll() {
         $db = getDB();
         $stmt = $db->query("SELECT * FROM etablissement_financiere");
