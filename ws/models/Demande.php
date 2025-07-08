@@ -103,8 +103,12 @@ class Demande
         $assurance_mensuelle = ($data->montant * ($data->assurance / 100)) / 12;
 
         $capital_restant = $data->montant;
-        $mois_debut = (int) date('m');
-        $annee_debut = (int) date('Y');
+        $datePret = $data->datePret; 
+
+        $dateObj = new DateTime($datePret);
+        $mois_debut = (int) $dateObj->format('m');
+        $annee_debut = (int) $dateObj->format('Y');
+        
 
         for ($i = 1; $i <= $data->mois_max; $i++) {
             $interet_mois = $capital_restant * $taux_mensuel;
