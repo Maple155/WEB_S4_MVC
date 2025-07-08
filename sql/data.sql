@@ -7,7 +7,7 @@ INSERT INTO mouvement_argent (id_mouvement, montant, date_) VALUES
 (1, 10000000, '2025-07-01');
 
 INSERT INTO mouvement_argent (montant, date_) VALUES
-(-10000000, '2025-07-01');
+(10000000, '2025-07-01');
 
 -- 3) Types de prêt
 INSERT INTO type_pret (id_type_pret, nom, taux_interet, duree_max_mois, montant_min, montant_max, age_min) VALUES

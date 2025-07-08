@@ -141,7 +141,7 @@
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
             <td class="numeric">${parseFloat(e.montant).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits:2 })}</td>
-          <td class = "numeric">${parseFloat(e.date_debut).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td class = "numeric">${(e.date_debut).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
           <td class = "numeric">${parseFloat(e.duree_mois).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
           <td class = "numeric">${parseFloat(e.assurance).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits:2 })}</td>
           <td class = "numeric">${parseFloat(e.delai_mois).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
