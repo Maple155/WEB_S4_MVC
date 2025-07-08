@@ -101,8 +101,8 @@
           <tr>
             <th>Mois/Année</th>
             <th>Nombre de prêts</th>
-            <th>Capital</th>
-            <th>Intérêts</th>
+            <th>Capital (Ar)</th>
+            <th>Intérêts (Ar)</th>
           </tr>
         </thead>
         <tbody id="interestsBody">
@@ -159,13 +159,13 @@
             row.innerHTML = `
               <td>${item.periode}</td>
               <td>${item.nombre_prets}</td>
-              <td>${parseFloat(item.capital_total).toLocaleString('fr-FR')} €</td>
-              <td>${parseFloat(item.interets_mensuels).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €</td>
+              <td>${parseFloat(item.capital_total).toLocaleString('fr-FR')} </td>
+              <td>${parseFloat(item.interets_mensuels).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} </td>
             `;
             tbody.appendChild(row);
           });
 
-          messageEl.textContent = `Total des intérêts : ${parseFloat(response.total_interets).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`;
+          messageEl.textContent = `Total des intérêts : ${parseFloat(response.total_interets).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} Ar`;
           messageEl.className = 'success';
         } else {
           messageEl.textContent = 'Aucun résultat trouvé';

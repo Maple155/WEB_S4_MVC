@@ -129,7 +129,7 @@
 
           renderChart(labels, dataValues);
 
-          messageEl.textContent = `Total des intérêts : ${parseFloat(response.total_interets).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} €`;
+          messageEl.textContent = `Total des intérêts : ${parseFloat(response.total_interets).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} Ar`;
           messageEl.className = 'success';
         } else {
           if (chartInstance) chartInstance.destroy();
@@ -149,7 +149,7 @@
         data: {
           labels: labels,
           datasets: [{
-            label: 'Intérêts (€)',
+            label: 'Intérêts (Ar)',
             data: dataValues,
             backgroundColor: '#2d7a5f',
             borderColor: '#3d8a6f',
@@ -162,7 +162,7 @@
             legend: { display: false },
             tooltip: {
               callbacks: {
-                label: context => `${context.parsed.y.toLocaleString('fr-FR', {minimumFractionDigits: 2})} €`
+                label: context => `${context.parsed.y.toLocaleString('fr-FR', {minimumFractionDigits: 2})} Ar`
               }
             }
           },
@@ -171,7 +171,7 @@
               beginAtZero: true,
               ticks: {
                 color: '#ffffff',
-                callback: value => value.toLocaleString('fr-FR') + ' €'
+                callback: value => value.toLocaleString('fr-FR') + ' Ar'
               },
               grid: { color: '#333' }
             },
