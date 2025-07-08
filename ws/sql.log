@@ -694,3 +694,4 @@
                 WHERE DATE(CONCAT(m.annee, '-', LPAD(m.mois, 2, '0'), '-01')) BETWEEN '2024-08-01' AND '2025-12-31'
                 GROUP BY m.annee, m.mois
                 ORDER BY m.annee, m.mois
+

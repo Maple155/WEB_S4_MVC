@@ -106,7 +106,8 @@
     </div>
 
     <script>
-        const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
+      
         let allPrets = [];
 
         function ajax(method, url, data, callback) {
