@@ -220,8 +220,9 @@
     <div id="comparisonResult"></div>
 
     <script>
-        const apiBase = "http://localhost/WEB_S4_MVC/ws";
-
+        // const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+        const apiBase = "/ETU003113/t/WEB_S4_MVC/ws";
+        
         function ajax(method, url, data, callback) {
             const xhr = new XMLHttpRequest();
             const fullUrl = apiBase + url + (method === "GET" && data ? "?" + data : "");
