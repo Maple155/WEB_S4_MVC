@@ -8,17 +8,17 @@ CREATE TABLE etablissement_financiere (
 CREATE TABLE type_pret (
    id_type_pret INT AUTO_INCREMENT,
    nom VARCHAR(50) NOT NULL,
-   taux_interet INT NOT NULL,
+   taux_interet DECIMAL(5,2) NOT NULL,
    duree_max_mois INT NOT NULL,
-   montant_min DECIMAL(15,0),
-   montant_max DECIMAL(15,0) NOT NULL,
+   montant_min DECIMAL(15,2),
+   montant_max DECIMAL(15,2) NOT NULL,
    age_min INT NOT NULL,
    PRIMARY KEY(id_type_pret)
 );
 
 CREATE TABLE mouvement_argent (
    id_mouvement INT AUTO_INCREMENT,
-   montant DECIMAL(15,0) NOT NULL,
+   montant DECIMAL(15,2) NOT NULL,
    date_ DATE NOT NULL,
    PRIMARY KEY(id_mouvement)
 );
@@ -29,13 +29,13 @@ CREATE TABLE client (
    mdp VARCHAR(50) NOT NULL,
    prenom VARCHAR(50) NOT NULL,
    date_de_naissance DATE NOT NULL,
-   revenu_mensuel DECIMAL(15,0) NOT NULL,
+   revenu_mensuel DECIMAL(15,2) NOT NULL,
    PRIMARY KEY(id_client)
 );
 
 CREATE TABLE pret (
    id_pret INT AUTO_INCREMENT,
-   montant DECIMAL(15,0) NOT NULL,
+   montant DECIMAL(15,2) NOT NULL,
    date_debut DATE NOT NULL,
    duree_mois INT NOT NULL,
    assurance DECIMAL(5,2) DEFAULT 0, 
@@ -49,9 +49,9 @@ CREATE TABLE pret (
 
 CREATE TABLE mensualite (
    id_mensualite INT AUTO_INCREMENT,
-   capital DECIMAL(15,0) NOT NULL,
-   interet DECIMAL(15,0) NOT NULL,
-   assurance DECIMAL(15,0) DEFAULT 0,
+   capital DECIMAL(15,2) NOT NULL,
+   interet DECIMAL(5,2) NOT NULL,
+   assurance DECIMAL(5,2) DEFAULT 0,
    mois INT,
    annee INT,
    id_pret INT NOT NULL,
