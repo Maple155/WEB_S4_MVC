@@ -106,7 +106,6 @@
     <table id="table-etudiants">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Nom</th>
           <th>Taux (%)</th>
           <th>Durée (mois)</th>
