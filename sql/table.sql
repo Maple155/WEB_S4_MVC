@@ -47,6 +47,20 @@ CREATE TABLE pret (
    FOREIGN KEY(id_client) REFERENCES client(id_client)
 );
 
+CREATE TABLE pret_simulation (
+   id_pret INT AUTO_INCREMENT,
+   montant DECIMAL(15,2) NOT NULL,
+   date_debut DATE NOT NULL,
+   duree_mois INT NOT NULL,
+   assurance DECIMAL(5,2) DEFAULT 0, 
+   delai_mois INT DEFAULT 0,
+   id_type_pret INT NOT NULL,
+   id_client INT NOT NULL,
+   PRIMARY KEY(id_pret),
+   FOREIGN KEY(id_type_pret) REFERENCES type_pret(id_type_pret),
+   FOREIGN KEY(id_client) REFERENCES client(id_client)
+);
+
 CREATE TABLE mensualite (
    id_mensualite INT AUTO_INCREMENT,
    capital DECIMAL(15,2) NOT NULL,

@@ -57,6 +57,18 @@ class EF {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public static function getAllSim() {
+        $db = getDB();
+        $stmt = $db->prepare("SELECT * FROM pret_simulation ORDER BY id_pret DESC");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public static function getSimById($id) {
+        $db = getDB();
+        $stmt = $db->prepare("SELECT * FROM pret_simulation WHERE id_pret = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
 
 

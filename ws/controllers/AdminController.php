@@ -66,5 +66,64 @@ class AdminController {
             ]));
         }
     }
+    public static function getAllSim() {
+        $simulations = EF::getAll();
+        Flight::json($simulations);
+    }
+
+    public static function compareSimulations() {
+            $id1 = $_GET['id1'];
+            $id2 = $_GET['id2'];
+
+            $conn = getDB();
+
+            $s1 = EF::getSimById($id1);
+            $s2 = EF::getSimById($id2);
+
+            // On récupère les taux depuis type_pret
+            $stmt = $conn->prepare("SELECT id_type_pret, taux_interet FROM type_pret");
+            $stmt->execute();
+            $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $typeMap = [];
+            foreach ($types as $t) {
+                $typeMap[$t['id_type_pret']] = $t['taux_interet'];
+            }
+
+            // Calculs
+            function calculerSimulation($s, $taux_annuel) {
+                $montant = $s['montant'];
+                $duree = $s['duree_mois'];
+                $assurance = $s['assurance'];
+                $delai = $s['delai_mois'];
+
+                $taux_mensuel = $taux_annuel / 12 / 100;
+                $annuite = ($montant * $taux_mensuel) / (1 - pow(1 + $taux_mensuel, -$duree));
+                $assurance_mensuelle = ($montant * ($assurance / 100)) / 12;
+                $mensualite_totale = $annuite + $assurance_mensuelle;
+                $interet_total = 0;
+                $capitalRestant = $montant;
+
+                for ($i = 1; $i <= $duree; $i++) {
+                    $interetMois = $capitalRestant * $taux_mensuel;
+                    $capitalMois = $annuite - $interetMois;
+                    $interet_total += $interetMois;
+                    $capitalRestant -= $capitalMois;
+                }
+
+                return [
+                    "mensualite" => $mensualite_totale,
+                    "interet_total" => $interet_total,
+                    "taux_annuel" => $taux_annuel
+                ];
+            }
+
+            $res1 = calculerSimulation($s1, $typeMap[$s1['id_type_pret']]);
+            $res2 = calculerSimulation($s2, $typeMap[$s2['id_type_pret']]);
+
+            echo json_encode([
+                "sim1" => array_merge($s1, $res1),
+                "sim2" => array_merge($s2, $res2)
+            ]);
+        }
 
 }

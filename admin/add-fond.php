@@ -311,7 +311,7 @@ include 'sidebar.php';
             showLoader();
             
             const data = `montant=${montant}&date=${date}`;
-            ajax("POST", `admin/addFond`, data, (response) => {
+            ajax("POST", `/admin/addFond`, data, (response) => {
                 hideLoader();
                 
                 if (response && response.success) {
