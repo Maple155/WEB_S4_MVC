@@ -586,7 +586,7 @@ include 'sidebar.php';
                             <div class="summary-value">${delai} mois</div>
                         </div>
                         <div class="summary-item">
-                            <div class="summary-label">Mensualité totale</div>
+                            <div class="summary-label">Mensualité totale par mois </div>
                             <div class="summary-value">${mensualite_totale.toLocaleString()} Ar</div>
                         </div>
                         <div class="summary-item">
@@ -640,7 +640,6 @@ include 'sidebar.php';
                 simulationDiv.style.display = 'block';
                 simulationDiv.classList.add('fade-in');
                 
-                // Scroll vers la simulation
                 simulationDiv.scrollIntoView({ behavior: 'smooth' });
             });
         }
