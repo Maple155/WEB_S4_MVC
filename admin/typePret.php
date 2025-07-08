@@ -110,8 +110,8 @@
           <th>Nom</th>
           <th>Taux (%)</th>
           <th>Durée (mois)</th>
-          <th>Montant min</th>
-          <th>Montant max</th>
+          <th>Montant min (Ar)</th>
+          <th>Montant max (Ar)</th>
           <th>Âge min</th>
           <th>Actions</th>
         </tr>

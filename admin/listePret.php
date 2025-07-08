@@ -91,11 +91,11 @@
         <table id="table-etudiants">
             <thead>
                 <tr>
-                    <th>Montant</th>
+                    <th>Montant (Ar)</th>
                     <th>Date de début</th>
                     <th>Durée (mois)</th>
-                    <th>Assurance</th>
-                    <th>Délai 1er remboursement</th>
+                    <th>Assurance (%)</th>
+                    <th>Délai 1er remboursement (mois)</th>
                     <th>Type prêt</th>
                     <th>Client</th>
                     <th>Action</th>
@@ -107,6 +107,7 @@
 
     <script>
         const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
+      
         let allPrets = [];
 
         function ajax(method, url, data, callback) {

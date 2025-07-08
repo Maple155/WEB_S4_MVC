@@ -98,7 +98,6 @@ class DemandeController
         $pdf->Cell(0, 6, "Delai avant premier remboursement : " . $delai . " mois", 0, 1);
         $pdf->Ln(3);
 
-        // REsumE financier
         $pdf->SetFont('Arial', 'B', 11);
         $pdf->Cell(0, 6, "RESUME FINANCIER :", 0, 1);
         $pdf->SetFont('Arial', '', 10);
