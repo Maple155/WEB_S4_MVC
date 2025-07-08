@@ -83,6 +83,10 @@
       background-color: #661111;
       color: #ffdada;
     }
+    td.numeric {
+      text-align: right;
+    }
+
   </style>
 </head>
 
@@ -115,7 +119,7 @@
   </div>
 
   <script>
-    const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+    const apiBase = "http://localhost/WEB_S4_MVC/ws";
 
     document.addEventListener('DOMContentLoaded', () => {
       const end = new Date();
@@ -158,12 +162,13 @@
             const row = document.createElement('tr');
             row.innerHTML = `
               <td>${item.periode}</td>
-              <td>${item.nombre_prets}</td>
-              <td>${parseFloat(item.capital_total).toLocaleString('fr-FR')} </td>
-              <td>${parseFloat(item.interets_mensuels).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} </td>
+              <td class="numeric">${parseInt(item.nombre_prets).toLocaleString('fr-FR')}</td>
+              <td class="numeric">${parseFloat(item.capital_total).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+              <td class="numeric">${parseFloat(item.interets_mensuels).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             `;
             tbody.appendChild(row);
           });
+
 
           messageEl.textContent = `Total des intérêts : ${parseFloat(response.total_interets).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} Ar`;
           messageEl.className = 'success';

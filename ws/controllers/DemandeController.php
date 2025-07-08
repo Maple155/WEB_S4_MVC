@@ -31,11 +31,11 @@ class DemandeController
         Flight::json(['message' => $message['message']]);
     }
 
-    public static function getCurrentClient()
-    {
-        $client = Demande::getCurrentClient();
-        Flight::json($client);
-    }
+    // public static function getCurrentClient()ss
+    // {
+    //     $client = Demande::getCurrentClient();
+    //     Flight::json($client);
+    // }
 
     public static function getAllClient()
     {
