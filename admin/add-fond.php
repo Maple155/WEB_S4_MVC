@@ -31,7 +31,6 @@ include 'sidebar.php';
             max-width: 500px;
             padding: 20px;
         }
-        
         .form-container {
             background: #111111;
             padding: 40px;
@@ -250,7 +249,7 @@ include 'sidebar.php';
     </div>
 
     <script>
-        const apiBase = "http://localhost/WEB_S4_MVC/ws/";
+        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
 
         // Définir la date d'aujourd'hui par défaut
         document.getElementById('date').valueAsDate = new Date();

@@ -115,7 +115,7 @@
   </div>
 
   <script>
-    const apiBase = "http://localhost/WEB_S4_MVC/ws/";
+    const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
 
     document.addEventListener('DOMContentLoaded', () => {
       const end = new Date();
@@ -142,7 +142,7 @@
 
       const data = `date_debut=${startDate}&date_fin=${endDate}`;
 
-      ajax("GET", "admin/interets", data, function(response) {
+      ajax("GET", "/admin/interets", data, function(response) {
         const tbody = document.getElementById('interestsBody');
         tbody.innerHTML = '';
 
@@ -150,6 +150,7 @@
           messageEl.textContent = response.error;
           messageEl.className = 'error';
           return;
+
         }
 
         if (response.details && response.details.length > 0) {
