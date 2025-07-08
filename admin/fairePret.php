@@ -513,6 +513,17 @@ include 'sidebar.php';
                 const annuite = (montant * taux_mensuel) / (1 - Math.pow(1 + taux_mensuel, -duree));
                 const assurance_mensuelle = (montant * (assurance / 100)) / 12;
                 const mensualite_totale = annuite + assurance_mensuelle;
+                let interet_total = 0;
+
+                let capitalRestant = montant;
+                for (let i = 1; i <= duree; i++) {
+                    const interetMois = capitalRestant * taux_mensuel;
+                    const capitalMois = annuite - interetMois;
+                    const totalMois = annuite + assurance_mensuelle;
+
+                    interet_total += interetMois;
+                    capitalRestant -= capitalMois;
+                }
 
                 let html = `
                     <div class="simulation-header">
@@ -543,6 +554,10 @@ include 'sidebar.php';
                         <div class="summary-item">
                             <div class="summary-label">Mensualité totale</div>
                             <div class="summary-value">${mensualite_totale.toLocaleString()} Ar</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">interêt totale</div>
+                            <div class="summary-value">${interet_total.toLocaleString()} Ar</div>
                         </div>
                     </div>
                     
@@ -595,8 +610,6 @@ include 'sidebar.php';
                 simulationDiv.scrollIntoView({ behavior: 'smooth' });
             });
         }
-
-        // Initialisation
 
         document.addEventListener("DOMContentLoaded", () => {
             const dateInput = document.getElementById("datePret");
