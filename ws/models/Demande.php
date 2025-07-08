@@ -121,8 +121,8 @@ class Demande
         $mois_debut = (int) $dateObj->format('m');
         $annee_debut = (int) $dateObj->format('Y');
         
-
-        for ($i = 1; $i <= $data->mois_max; $i++) {
+        $duree = $data->mois_max - $data->delai;
+        for ($i = 1; $i <= $duree; $i++) {
             $interet_mois = $capital_restant * $taux_mensuel;
             $capital_mois = $annuite - $interet_mois;
 
