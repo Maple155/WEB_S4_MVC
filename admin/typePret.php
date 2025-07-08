@@ -153,10 +153,10 @@
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${e.nom}</td>
-          <td class = "numeric">${parseFloat(e.taux_interet).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td class = "numeric">${parseFloat(e.taux_interet).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits:2 })}</td>
           <td class = "numeric">${parseFloat(e.duree_max_mois).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
-          <td class = "numeric">${parseFloat(e.montant_min).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
-          <td class = "numeric">${parseFloat(e.montant_max).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td class = "numeric">${parseFloat(e.montant_min).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits:2 })}</td>
+          <td class = "numeric">${parseFloat(e.montant_max).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits:2 })}</td>
           <td class = "numeric">${parseFloat(e.age_min).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
           <td>
             <button onclick='remplirFormulaire(${JSON.stringify(e)})'>✏️</button>

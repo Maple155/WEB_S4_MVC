@@ -119,7 +119,7 @@
   </div>
 
   <script>
-    const apiBase = "http://localhost/WEB_S4_MVC/ws";
+    const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
 
     document.addEventListener('DOMContentLoaded', () => {
       const end = new Date();
@@ -163,7 +163,7 @@
             row.innerHTML = `
               <td>${item.periode}</td>
               <td class="numeric">${parseInt(item.nombre_prets).toLocaleString('fr-FR')}</td>
-              <td class="numeric">${parseFloat(item.capital_total).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+              <td class="numeric">${parseFloat(item.capital_total).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
               <td class="numeric">${parseFloat(item.interets_mensuels).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             `;
             tbody.appendChild(row);
