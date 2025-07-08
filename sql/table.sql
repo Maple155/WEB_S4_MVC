@@ -47,18 +47,6 @@ CREATE TABLE pret (
    FOREIGN KEY(id_client) REFERENCES client(id_client)
 );
 
-CREATE TABLE mensualite (
-   id_mensualite INT AUTO_INCREMENT,
-   capital DECIMAL(15,2) NOT NULL,
-   interet DECIMAL(5,2) NOT NULL,
-   assurance DECIMAL(5,2) DEFAULT 0,
-   mois INT,
-   annee INT,
-   id_pret INT NOT NULL,
-   PRIMARY KEY(id_mensualite),
-   FOREIGN KEY(id_pret) REFERENCES pret(id_pret)
-);
-
 CREATE TABLE pret_simulation (
    id_pret INT AUTO_INCREMENT,
    montant DECIMAL(15,2) NOT NULL,
@@ -71,4 +59,16 @@ CREATE TABLE pret_simulation (
    PRIMARY KEY(id_pret),
    FOREIGN KEY(id_type_pret) REFERENCES type_pret(id_type_pret),
    FOREIGN KEY(id_client) REFERENCES client(id_client)
+);
+
+CREATE TABLE mensualite (
+   id_mensualite INT AUTO_INCREMENT,
+   capital DECIMAL(15,2) NOT NULL,
+   interet DECIMAL(5,2) NOT NULL,
+   assurance DECIMAL(5,2) DEFAULT 0,
+   mois INT,
+   annee INT,
+   id_pret INT NOT NULL,
+   PRIMARY KEY(id_mensualite),
+   FOREIGN KEY(id_pret) REFERENCES pret(id_pret)
 );
