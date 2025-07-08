@@ -359,7 +359,7 @@ include 'sidebar.php';
                 
                 <div class="form-group">
                     <label for="delai">Délai 1er remboursement (mois)</label>
-                    <input type="number" id="delai" name="delai" placeholder="Ex: 1" min="0" />
+                    <input type="number" id="delai" name="delai" placeholder="Ex: 0" min="0" />
                 </div>
 
                 <div class="form-group">
@@ -524,16 +524,17 @@ include 'sidebar.php';
 
         function simulerPret() {
             const montant = parseFloat(document.getElementById("montant").value);
-            const duree = parseInt(document.getElementById("mois_max").value);
+            const duree_initial = parseInt(document.getElementById("mois_max").value);
             const id_type_pret = document.getElementById("type_pret").value;
             const assurance = parseFloat(document.getElementById("assurance").value || 0);
             const delai = parseInt(document.getElementById("delai").value || 0);
 
-            if (!montant || !duree || !id_type_pret) {
+            if (!montant || !duree_initial || !id_type_pret) {
                 showMessage("Veuillez remplir le montant, la durée et le type de prêt", "error");
                 return;
             }
 
+            duree = duree_initial - delai;
             ajax("GET", "/type_prets", null, (data) => {
                 const typePret = data.find(item => item.id_type_pret == id_type_pret);
                 if (!typePret) {
