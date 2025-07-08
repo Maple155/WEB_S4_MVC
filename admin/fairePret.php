@@ -374,6 +374,9 @@ include 'sidebar.php';
                     <button type="button" class="btn-secondary" onclick="simulerPret()">
                         Simuler
                     </button>
+                    <button type="button" class="btn-secondary" onclick="simulerPret()">
+                        Sauvegarder simulation
+                    </button>
                 </div>
                 
                 <div id="messagePret" class="message"></div>
