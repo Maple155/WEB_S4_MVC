@@ -247,6 +247,10 @@
                     <i class="fas fa-plus"></i>
                     <span class="menu-label">Ajouter des fonds</span>
                 </a>
+                <a href="tableauEF.php" class="menu-item">
+                    <i class="fas fa-plus"></i>
+                    <span class="menu-label">Fonds disponibles</span>
+                </a>
             </div>
             
             <div class="menu-item has-submenu" onclick="toggleSubmenu(this)">
@@ -280,10 +284,6 @@
                 <a href="interests_chart.php" class="menu-item">
                     <i class="fas fa-percentage"></i>
                     <span class="menu-label">Graphique</span>
-                </a>
-                <a href="tableauEF.php" class="menu-item">
-                    <i class="fas fa-percentage"></i>
-                    <span class="menu-label">Fonds disponibles</span>
                 </a>
             </div>
             
