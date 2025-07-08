@@ -12,6 +12,18 @@ class Demande
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function createMouvArgent($db, $montant, $date) 
+    {
+        $stmt = $db->prepare("
+        INSERT INTO mouvement_argent (montant, date_)
+        VALUES (?, ?)
+            ");
+        $stmt->execute([
+            $montant,
+            $date
+        ]);
+    }
+
     public static function findByIdPret($id)
     {
         $db = getDB();
@@ -171,6 +183,7 @@ class Demande
             ]);
             $id_pret = $db->lastInsertId();
 
+            self::createMouvArgent($db, ($data->montant * -1), $data->datePret);
             self::insertMensualites($db, $data, $typePret, $id_pret);
 
         } catch (PDOException $e) {
