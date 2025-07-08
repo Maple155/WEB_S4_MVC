@@ -154,10 +154,11 @@ class Demande
         try {
             $stmt = $db->prepare("
                     INSERT INTO pret (montant, date_debut, duree_mois, assurance, delai_mois, id_type_pret, id_client)
-                    VALUES (?, NOW(), ?, ?, ?, ?, ?)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
                 ");
             $stmt->execute([
                 $data->montant,
+                $data->datePret,
                 $data->mois_max,
                 $data->assurance,
                 $data->delai,
@@ -210,7 +211,6 @@ class Demande
             // Total à payer ce mois = mensualité + assurance
             $total = $mensualite + $assurance_mensuelle;
 
-            // Réduction du capital restant
             $capital_restant -= $principal;
 
             $tableau[] = [
@@ -226,13 +226,11 @@ class Demande
         return $tableau;
     }
 
-    // Fonction pour vérifier la cohérence des calculs
     public static function verifierCalculs($capital, $taux_annuel, $mois, $assurance)
     {
         $mensualite = self::calculAnnuite($capital, $taux_annuel, $mois);
         $tableau = self::tableauAmortissement($capital, $taux_annuel, $mois, $assurance);
 
-        // Vérifications
         $total_principal = array_sum(array_column($tableau, 'principal'));
         $total_interets = array_sum(array_column($tableau, 'interet'));
         $total_assurance = array_sum(array_column($tableau, 'assurance'));
@@ -245,7 +243,6 @@ class Demande
         echo "Total assurance payée: " . number_format($total_assurance, 2) . " Ar\n";
         echo "Différence capital: " . number_format($capital - $total_principal, 2) . " Ar\n";
 
-        // Le total principal doit être égal au capital initial
         if (abs($capital - $total_principal) < 1) {
             echo "✓ Calculs cohérents\n";
         } else {

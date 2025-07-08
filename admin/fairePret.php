@@ -361,6 +361,11 @@ include 'sidebar.php';
                     <label for="delai">Délai 1er remboursement (mois)</label>
                     <input type="number" id="delai" name="delai" placeholder="Ex: 1" min="0" />
                 </div>
+
+                <div class="form-group">
+                    <label for="delai">Date du pret </label>
+                    <input type="date" id="datePret" name="datePret" />
+                </div>
                 
                 <div class="button-group">
                     <button type="button" class="btn-primary" onclick="demanderPret()">
@@ -381,7 +386,7 @@ include 'sidebar.php';
     </div>
 
     <script>
-        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
+        const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
 
         function ajax(method, url, data, callback) {
             const xhr = new XMLHttpRequest();
@@ -461,24 +466,25 @@ include 'sidebar.php';
             const id_client = document.getElementById("client").value;
             const assurance = parseFloat(document.getElementById("assurance").value || 0);
             const delai = parseInt(document.getElementById("delai").value || 0);
+            const date = document.getElementById("datePret").value; 
 
             if (!id_type_pret || !montant || !mois_max || !id_client) {
                 showMessage("Veuillez remplir tous les champs obligatoires", "error");
                 return;
             }
 
-            const params = `id_type_pret=${encodeURIComponent(id_type_pret)}&montant=${encodeURIComponent(montant)}&mois_max=${encodeURIComponent(mois_max)}&id_client=${encodeURIComponent(id_client)}&assurance=${encodeURIComponent(assurance)}&delai=${encodeURIComponent(delai)}`;
+            const params = `id_type_pret=${encodeURIComponent(id_type_pret)}&montant=${encodeURIComponent(montant)}&mois_max=${encodeURIComponent(mois_max)}&id_client=${encodeURIComponent(id_client)}&assurance=${encodeURIComponent(assurance)}&delai=${encodeURIComponent(delai)}&datePret=${encodeURIComponent(date)}`;
 
             ajax("POST", "/prets", params, (data) => {
                 if (data.message) {
                     showMessage(data.message, "success");
-                    // Réinitialiser le formulaire
                     document.getElementById("montant").value = "";
                     document.getElementById("mois_max").value = "";
                     document.getElementById("assurance").value = "";
                     document.getElementById("delai").value = "";
                     document.getElementById("client").value = "";
                     document.getElementById("type_pret").value = "";
+                    document.getElementById("datePret").value = "";
                 }
             });
         }
@@ -591,7 +597,11 @@ include 'sidebar.php';
         }
 
         // Initialisation
+
         document.addEventListener("DOMContentLoaded", () => {
+            const dateInput = document.getElementById("datePret");
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.value = today;
             chargerTypePrets();
             chargerAllClient();
         });
