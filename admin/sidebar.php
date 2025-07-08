@@ -233,9 +233,9 @@
         </div>
         
         <div class="sidebar-menu">
-            <a href="interests_report.php" class="menu-item">
+            <a href="compare_sim.php" class="menu-item">
                 <i class="fas fa-chart-line"></i>
-                <span class="menu-label">Tableau de bord</span>
+                <span class="menu-label">Comparer Simulation</span>
             </a>
             
             <div class="menu-item has-submenu" onclick="toggleSubmenu(this)">

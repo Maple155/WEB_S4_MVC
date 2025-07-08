@@ -120,5 +120,29 @@ class AdminController
             ]));
         }
     }
+    public static function getAllSim() {
+        $simulations = EF::getAllSim();
+        Flight::json($simulations);
+    }
+
+    public static function compareSimulations(){
+        $id1 = Flight::request()->query->id1;
+        $id2 = Flight::request()->query->id2;
+
+        if (!$id1 || !$id2 || $id1 === $id2) {
+            Flight::json(['error' => 'Sélectionnez deux simulations différentes'], 400);
+            return;
+        }
+
+        $sim1 = EF::getSimById($id1);
+        $sim2 = EF::getSimById($id2);
+
+        if (!$sim1 || !$sim2) {
+            Flight::json(['error' => 'Simulation non trouvée'], 404);
+            return;
+        }
+
+        Flight::json(['sim1' => $sim1, 'sim2' => $sim2]);
+    }
 
 }
