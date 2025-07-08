@@ -374,6 +374,9 @@ include 'sidebar.php';
                     <button type="button" class="btn-secondary" onclick="simulerPret()">
                         Simuler
                     </button>
+                    <button type="button" class="btn-secondary" onclick="saveSimulation()">
+                        Sauvegarder simulation
+                    </button>
                 </div>
                 
                 <div id="messagePret" class="message"></div>
@@ -386,7 +389,7 @@ include 'sidebar.php';
     </div>
 
     <script>
-        const apiBase = "http://localhost/WEB_S4_MVC/ws";
+        const apiBase = "http://localhost/Git/WEB_S4_MVC/ws";
 
         function ajax(method, url, data, callback) {
             const xhr = new XMLHttpRequest();
@@ -476,6 +479,36 @@ include 'sidebar.php';
             const params = `id_type_pret=${encodeURIComponent(id_type_pret)}&montant=${encodeURIComponent(montant)}&mois_max=${encodeURIComponent(mois_max)}&id_client=${encodeURIComponent(id_client)}&assurance=${encodeURIComponent(assurance)}&delai=${encodeURIComponent(delai)}&datePret=${encodeURIComponent(date)}`;
 
             ajax("POST", "/prets", params, (data) => {
+                if (data.message) {
+                    showMessage(data.message, "success");
+                    document.getElementById("montant").value = "";
+                    document.getElementById("mois_max").value = "";
+                    document.getElementById("assurance").value = "";
+                    document.getElementById("delai").value = "";
+                    document.getElementById("client").value = "";
+                    document.getElementById("type_pret").value = "";
+                    document.getElementById("datePret").value = "";
+                }
+            });
+        }
+
+        function saveSimulation() {
+            const id_type_pret = document.getElementById("type_pret").value;
+            const montant = document.getElementById("montant").value;
+            const mois_max = document.getElementById("mois_max").value;
+            const id_client = document.getElementById("client").value;
+            const assurance = parseFloat(document.getElementById("assurance").value || 0);
+            const delai = parseInt(document.getElementById("delai").value || 0);
+            const date = document.getElementById("datePret").value; 
+
+            if (!id_type_pret || !montant || !mois_max || !id_client) {
+                showMessage("Veuillez remplir tous les champs obligatoires", "error");
+                return;
+            }
+
+            const params = `id_type_pret=${encodeURIComponent(id_type_pret)}&montant=${encodeURIComponent(montant)}&mois_max=${encodeURIComponent(mois_max)}&id_client=${encodeURIComponent(id_client)}&assurance=${encodeURIComponent(assurance)}&delai=${encodeURIComponent(delai)}&datePret=${encodeURIComponent(date)}`;
+
+            ajax("POST", "/simulations", params, (data) => {
                 if (data.message) {
                     showMessage(data.message, "success");
                     document.getElementById("montant").value = "";
