@@ -215,7 +215,8 @@
     <div id="comparisonResult"></div>
 
     <script>
-        const apiBase = "http://localhost/WEB_S4_MVC/ws";
+        // const apiBase = "http://localhost/WEB_S4_MVC/ws";
+        const apiBase = "/ETU003178/t/WEB_S4_MVC/ws";
         let simulationsGlobales = [];
 
         function chargerSimulations() {
