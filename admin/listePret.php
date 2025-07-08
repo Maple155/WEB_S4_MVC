@@ -75,6 +75,11 @@
             padding: 6px 10px;
             font-size: 14px;
         }
+        td.numeric {
+            text-align: right;
+            font-variant-numeric: tabular-nums; /* alignement visuel propre */
+        }
+
     </style>
 </head>
 
@@ -134,12 +139,12 @@
             prets.forEach(e => {
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
-          <td>${e.montant}</td>
-          <td>${e.date_debut}</td>
-          <td>${e.duree_mois}</td>
-          <td>${e.assurance}</td>
-          <td>${e.delai_mois}</td>
-          <td>${e.nom_type_pret}</td>
+            <td class="numeric">${parseFloat(e.montant).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td class = "numeric">${parseFloat(e.date_debut).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td class = "numeric">${parseFloat(e.duree_mois).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td class = "numeric">${parseFloat(e.assurance).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td class = "numeric">${parseFloat(e.delai_mois).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td >${e.nom_type_pret}</td>
           <td>${e.prenom}</td>
           <td><button onclick='telechargerPdf(${e.id_pret})'>📄 PDF</button></td>
         `;

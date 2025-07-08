@@ -79,6 +79,10 @@
       flex: 1;
       min-width: 150px;
     }
+    td.numeric {
+        text-align: right;
+        font-variant-numeric: tabular-nums; /* alignement visuel propre */
+    }
   </style>
 </head>
 
@@ -106,7 +110,6 @@
     <table id="table-etudiants">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Nom</th>
           <th>Taux (%)</th>
           <th>Durée (mois)</th>
@@ -149,13 +152,12 @@
       typePrets.forEach(e => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td>${e.id_type_pret}</td>
           <td>${e.nom}</td>
-          <td>${e.taux_interet}</td>
-          <td>${e.duree_max_mois}</td>
-          <td>${e.montant_min}</td>
-          <td>${e.montant_max}</td>
-          <td>${e.age_min}</td>
+          <td class = "numeric">${parseFloat(e.taux_interet).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td class = "numeric">${parseFloat(e.duree_max_mois).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td class = "numeric">${parseFloat(e.montant_min).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td class = "numeric">${parseFloat(e.montant_max).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
+          <td class = "numeric">${parseFloat(e.age_min).toLocaleString('fr-FR', { minimumFractionDigits: 0 })}</td>
           <td>
             <button onclick='remplirFormulaire(${JSON.stringify(e)})'>✏️</button>
             <button onclick='supprimerEtudiant(${e.id_type_pret})'>🗑️</button>
