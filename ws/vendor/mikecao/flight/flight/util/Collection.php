@@ -49,15 +49,13 @@ class Collection implements \ArrayAccess, \Iterator, \Countable, \JsonSerializab
         unset($this->data[$key]);
     }
 
-    // ✅ ✅ ✅ Fix signatures for PHP 8.1+ strict interfaces
-
     #[\ReturnTypeWillChange]
-    public function offsetGet($offset): mixed {
+    public function offsetGet($offset) {
         return isset($this->data[$offset]) ? $this->data[$offset] : null;
     }
 
     #[\ReturnTypeWillChange]
-    public function offsetSet($offset, $value): void {
+    public function offsetSet($offset, $value) {
         if (is_null($offset)) {
             $this->data[] = $value;
         } else {
@@ -66,58 +64,64 @@ class Collection implements \ArrayAccess, \Iterator, \Countable, \JsonSerializab
     }
 
     #[\ReturnTypeWillChange]
-    public function offsetExists($offset): bool {
+    public function offsetExists($offset) {
         return isset($this->data[$offset]);
     }
 
     #[\ReturnTypeWillChange]
-    public function offsetUnset($offset): void {
+    public function offsetUnset($offset) {
         unset($this->data[$offset]);
     }
 
-    public function rewind(): void {
+    #[\ReturnTypeWillChange]
+    public function rewind() {
         reset($this->data);
     }
 
-    public function current(): mixed {
+    #[\ReturnTypeWillChange]
+    public function current() {
         return current($this->data);
     }
 
-    public function key(): mixed {
+    #[\ReturnTypeWillChange]
+    public function key() {
         return key($this->data);
     }
 
-    public function next(): mixed {
+    #[\ReturnTypeWillChange]
+    public function next() {
         return next($this->data);
     }
 
-    public function valid(): bool {
+    #[\ReturnTypeWillChange]
+    public function valid() {
         $key = key($this->data);
-        return ($key !== NULL && $key !== FALSE);
+        return ($key !== null && $key !== false);
     }
 
-    public function count(): int {
+    #[\ReturnTypeWillChange]
+    public function count() {
         return sizeof($this->data);
     }
 
-    public function keys(): array {
+    public function keys() {
         return array_keys($this->data);
     }
 
-    public function getData(): array {
+    public function getData() {
         return $this->data;
     }
 
-    public function setData(array $data): void {
+    public function setData(array $data) {
         $this->data = $data;
     }
 
     #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed {
+    public function jsonSerialize() {
         return $this->data;
     }
 
-    public function clear(): void {
+    public function clear() {
         $this->data = array();
     }
 }

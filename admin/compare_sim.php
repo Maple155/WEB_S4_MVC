@@ -215,8 +215,8 @@
     <div id="comparisonResult"></div>
 
     <script>
-        // const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
-        const apiBase = "/ETU003113/t/WEB_S4_MVC/ws";
+        const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+        // const apiBase = "/ETU003113/t/WEB_S4_MVC/ws";
       
         let simulationsGlobales = [];
 
@@ -249,7 +249,7 @@
             container.innerHTML = "<strong>Choisissez deux simulations :</strong>";
 
             data.forEach(sim => {
-                const label = `#${sim.id_pret} - ${parseFloat(sim.montant).toLocaleString('fr-FR')} Ar - ${sim.duree_mois} mois - ${sim.nom_type || "Type inconnu"}`;
+                const label = `#${sim.id_pret} - ${parseFloat(sim.montant).toLocaleString('fr-FR')} Ar - ${sim.duree_mois} mois - ${sim.nom || "Type inconnu"}`;
 
                 const div = document.createElement("div");
                 div.style.marginBottom = "8px";
@@ -296,12 +296,13 @@
 
                 function calculDetail(sim) {
                     const montant = parseFloat(sim.montant);
-                    const duree = parseInt(sim.duree_mois);
+                    const duree_initiale = parseInt(sim.duree_mois);
                     const assurance = parseFloat(sim.assurance);
                     const delai = parseInt(sim.delai_mois);
                     const taux_annuel = parseFloat(sim.taux_interet) / 100;
                     const taux_mensuel = taux_annuel / 12;
 
+                    const duree = duree_initiale - delai;
                     const annuite = (montant * taux_mensuel) / (1 - Math.pow(1 + taux_mensuel, -duree));
                     const assurance_mensuelle = (montant * (assurance / 100)) / 12;
                     const mensualite_totale = annuite + assurance_mensuelle;
@@ -512,8 +513,8 @@
                 html += `</tbody></table></div>`;
                 html += `
                     <div style="text-align:center; margin-top: 30px;">
-                        <button onclick='sauverPretSimulation(${JSON.stringify(s1)})'>💾 Sauvegarder Simulation #${s1.id_pret}</button>
-                        <button onclick='sauverPretSimulation(${JSON.stringify(s2)})'>💾 Sauvegarder Simulation #${s2.id_pret}</button>
+                        <button onclick='sauverPretSimulation(${JSON.stringify(s1)})'>💾 Changer en pret #${s1.id_pret}</button>
+                        <button onclick='sauverPretSimulation(${JSON.stringify(s2)})'>💾 Changer en pret #${s2.id_pret}</button>
                     </div>
                 `;
 

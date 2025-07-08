@@ -1,14 +1,14 @@
 <?php
 function getDB() {
-    // $host = 'localhost';
-    // $dbname = 'tp_flight';
-    // $username = 'root';
-    // $password = 'root';
+    $host = 'localhost';
+    $dbname = 'tp_flight';
+    $username = 'root';
+    $password = 'root';
 
-    $host = '172.60.0.17';
-    $dbname = 'db_s2_ETU003113';
-    $usernamer = 'ETU003113';
-    $password = 'q3fZmo1u';
+    // $host = '172.60.0.17';
+    // $dbname = 'db_s2_ETU003113';
+    // $usernamer = 'ETU003113';
+    // $password = 'q3fZmo1u';
 
     try {
         return new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password, [
