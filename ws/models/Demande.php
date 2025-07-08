@@ -180,7 +180,48 @@ class Demande
         return ['message' => 'Prêt accepté avec mensualités générées avec succès'];
     }
 
+    public static function saveSimulation($data)
+    {
+        $db = getDB();
 
+        $validation = self::validatePretData($data);
+        if ($validation !== true)
+            return ['message' => $validation];
+
+        $typePret = self::getTypePretById($data->id_type_pret);
+        if (!$typePret)
+            return ['message' => 'Type de prêt invalide'];
+
+        $client = self::getCurrentClient($data->id_client);
+        if (!$client || empty($client['date_de_naissance'])) {
+            return ['message' => 'Client introuvable ou date de naissance manquante'];
+        }
+
+        // $validation = self::validatePretRules($data, $typePret, $client);
+        // if ($validation !== true) return ['message' => $validation];
+
+        try {
+            $stmt = $db->prepare("
+                    INSERT INTO pret_simulation (montant, date_debut, duree_mois, assurance, delai_mois, id_type_pret, id_client)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                ");
+            $stmt->execute([
+                $data->montant,
+                $data->datePret,
+                $data->mois_max,
+                $data->assurance,
+                $data->delai,
+                $data->id_type_pret,
+                $data->id_client
+            ]);
+            $id_pret = $db->lastInsertId();
+
+        } catch (PDOException $e) {
+            return ['message' => "Erreur SQL : " . $e->getMessage()];
+        }
+
+        return ['message' => 'Simulation générées avec succès'];
+    }
 
     public static function calculAnnuite($capital, $taux_annuel, $mois)
     {

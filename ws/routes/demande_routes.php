@@ -8,5 +8,7 @@ Flight::route('POST /prets', ['DemandeController', 'createPret']);
 Flight::route('GET /prets', ['DemandeController', 'getAllPrets']);
 Flight::route('GET /prets/@id', ['DemandeController', 'generatePDF']);
 
+FLight::route('POST /simulations', ['DemandeController', 'saveSimulation']);
+
 Flight::route('GET /currentClient', ['DemandeController', 'getCurrentClient']);
 Flight::route('GET /allClients', ['DemandeController', 'getAllClient']);

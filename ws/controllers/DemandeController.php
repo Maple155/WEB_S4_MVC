@@ -31,6 +31,13 @@ class DemandeController
         Flight::json(['message' => $message['message']]);
     }
 
+    public static function saveSimulation()
+    {
+        $data = Flight::request()->data;
+        $message = Demande::saveSimulation($data);
+        Flight::json(['message' => $message['message']]);
+    }
+
     // public static function getCurrentClient()ss
     // {
     //     $client = Demande::getCurrentClient();
