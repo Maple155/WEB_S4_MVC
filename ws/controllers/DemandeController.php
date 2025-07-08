@@ -95,6 +95,7 @@ class DemandeController
         $pdf->Cell(0, 6, "Taux d'interet : " . $taux . " % par an", 0, 1);
         $pdf->Cell(0, 6, "Duree : " . $mois . " mois", 0, 1);
         $pdf->Cell(0, 6, "Taux d'assurance : " . $assurance . " % par an", 0, 1);
+        $pdf->Cell(0, 6, "Delai avant premier remboursement : " . $delai . " mois", 0, 1);
         $pdf->Ln(3);
 
         // REsumE financier
