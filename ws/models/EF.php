@@ -86,7 +86,7 @@ class EF {
     }
     public static function getAllSim() {
         $db = getDB();
-        $stmt = $db->prepare("SELECT s.*, t.taux_interet FROM pret_simulation s JOIN type_pret t ON s.id_type_pret = t.id_type_pret");
+        $stmt = $db->prepare("SELECT s.*, t.* FROM pret_simulation s JOIN type_pret t ON s.id_type_pret = t.id_type_pret");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

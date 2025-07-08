@@ -3,9 +3,9 @@ function getDB() {
     $host = 'localhost';
     $dbname = 'tp_flight';
     $username = 'root';
-    $password = '';
+    $password = 'root';
 
-    // $host = '172.160.0.13';
+    // $host = '172.60.0.17';
     // $dbname = 'db_s2_ETU003113';
     // $usernamer = 'ETU003113';
     // $password = 'q3fZmo1u';
