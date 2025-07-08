@@ -124,7 +124,7 @@
         <img src="../sql/banque.png" alt="Logo Banque" />
         <h1>Espace Administrateur</h1>
 
-        <input type="text" id="nom" placeholder="Nom de l'établissement" value="MicroFinance ITU" autocomplete="username" />
+        <input type="text" id="nom" placeholder="Nom de l'établissement" value="MicroFinance ITU" autocomplete="test" />
         <input type="password" id="mdp" placeholder="Mot de passe" value="admin123" autocomplete="current-password" />
         
         <button id="submitBtn" onclick="connect()">
@@ -136,8 +136,8 @@
     </div>
 
     <script>
-        const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
-        // const apiBase = "/ETU003113/t/WEB_S4_MVC/ws";
+        // const apiBase = "http://localhost/serveur/S4/WEB_S4_MVC/ws";
+        const apiBase = "/ETU003113/t/WEB_S4_MVC/ws";
         function ajax(method, url, data, callback) {
             const xhr = new XMLHttpRequest();
             xhr.open(method, apiBase + url, true);
